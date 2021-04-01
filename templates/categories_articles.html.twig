@@ -15,6 +15,9 @@
                             <div class="border"></div>
                             <a href="{{ path('delete_category', {'id' : category.id}) }}">supprimer la categorie</a>
                         </div>
+                    {% for article in category.article %}
+                    <h3>{{ article.title }}</h3>
+                    {% endfor %}
                 </div>
             {% endfor %}
             </div>

@@ -1,0 +1,15 @@
+{% extends 'lore.html.twig' %}
+{% block content %}
+    {{ form_start(articles)  }}
+        {{ form_label (articles.title) }}
+        {{ form_widget(articles.title) }}
+        {{ form_label(articles.articleContent) }}
+        {{ form_widget(articles.articleContent) }}
+        {{ form_label(articles.category) }}
+        {{ form_widget(articles.category) }}
+        {{ form_label(articles.user) }}
+        {{ form_widget(articles.user) }}
+        {{ form_label(articles.media) }}
+        {{ form_widget(articles.media) }}
+    {{ form_end(articles) }}
+{% endblock %}

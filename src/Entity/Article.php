@@ -45,7 +45,7 @@ class Article
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $article;
+    private $articleContent;
 
     /**
      * @ORM\Column(type="date")
@@ -80,14 +80,14 @@ class Article
         return $this;
     }
 
-    public function getArticle(): ?string
+    public function getArticleContent(): ?string
     {
-        return $this->article;
+        return $this->articleContent;
     }
 
-    public function setArticle(?string $article): self
+    public function setArticleContent(?string $articleContent): self
     {
-        $this->article = $article;
+        $this->articleContent = $articleContent;
 
         return $this;
     }

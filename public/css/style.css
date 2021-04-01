@@ -325,6 +325,11 @@ footer img{
     font-size: 1em;
 }
 
+h3{
+    color: white;
+    font-size: 10em;
+}
+
 @media screen and (min-width:320px) and (max-width:850px){
     /* FAIRE DROP DOWN POUR TELEPHONE */
     header{

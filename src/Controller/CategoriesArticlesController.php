@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller\admin;
+namespace App\Controller;
 
 
 use App\Entity\CategoryArticle;
@@ -12,10 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 //je creer une class a laquelle je fais heriter la class de symfony AbstractController
-class AdminCategoriesArticles extends AbstractController
+class CategoriesArticlesController extends AbstractController
 {   //je creer une route qui me permet d'utiliser ma methode et je lui donne un nom
     /**
-     * @Route ("/admin/categories", name="display_categories")
+     * @Route ("/categories", name="display_categories")
      */
     //j'utilise l'auto wire qui me permet d'utiliser le repository creer par doctrine qui contient toutes les requetes
     public function displayCategories(CategoryArticleRepository $categoryArticleRepository)
@@ -23,7 +23,7 @@ class AdminCategoriesArticles extends AbstractController
         //je recupere toutes les données avec findAll (requete de type select) que je mets dans une variable
         $categories = $categoryArticleRepository->findAll();
         //je renvoie le tout a ma vue avec la methode render qui est hériter d'AbstractController
-        return $this->render('admin/admin_categories_articles.html.twig',
+        return $this->render('categories_articles.html.twig',
                 // je mets ma variable $categories dans une variable twig. les données recuperer sont mises
                 // dans un tableau
                 ['categories'=>$categories]
@@ -31,7 +31,7 @@ class AdminCategoriesArticles extends AbstractController
     }
     //je creer une route pour ma méthode et je lui donne un nom
     /**
-     * @Route ("/admin/insert/category", name="insert_category")
+     * @Route ("/insert/category", name="insert_category")
      */
     //j'instancie ma méthode avec des services de symfony
     public function insertCategory(Request $request, EntityManagerInterface $entityManager)
@@ -60,7 +60,7 @@ class AdminCategoriesArticles extends AbstractController
             return $this->redirectToRoute('insert_category');
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
-        return $this->render('admin/admin_insert_update_category_articles.html.twig', [
+        return $this->render('insert_update_category_articles.html.twig', [
             'categories' => $form->createView()
             ]);
     }
@@ -87,13 +87,13 @@ class AdminCategoriesArticles extends AbstractController
             );
 
         }
-        return $this->render('admin/admin_insert_update_category_articles.html.twig', [
+        return $this->render('insert_update_category_articles.html.twig', [
             'categories' => $form->createView()
         ]);
     }
     //je creer une route avec une wild card
     /**
-     * @Route ("delete/category/{id}", name="delete_category")
+     * @Route ("/delete/category/{id}", name="delete_category")
      */
     public function deleteCategory($id, CategoryArticleRepository $categoryArticleRepository, EntityManagerInterface $entityManager)
     {
