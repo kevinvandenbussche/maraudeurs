@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="kevin vandenbussche">
+    <meta name="keywords" content="maraudeurs, star citizen, milsim, militaire, jeux vidéo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <title>maraudeurs</title>
+</head>
+<body>
+{% block header %}
+    {# la valeur par default de mon block header est mon fichier 'header.main.html.twig #}
+    {% include 'header/header.main.html.twig' %}
+{% endblock %}
+<!-- la nav est sortie de la structure HTML classique pour pouvoir etre sticky au body directement-->
+<nav class="wrapperHeader">
+    <div id="boiteTransparente">
+        <div id="bandeauMenu">
+            <ul class="dekstop">
+                <li class="scale"><a href="{{ path ('home_page') }}">acceuil</a></li>
+
+                <li class="scale"><a href="{{ path ('lore_page') }}">lore</a></li>
+
+                <li class="scale"><a href="{{ path('display_categories') }}">organigramme</a></li>
+
+                <li class="scale"><a href="https://robertsspaceindustries.com/" target="_blank">cloud imprium  gaming</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% for message in app.flashes('success') %}
+<div class="message">
+    <p>{{ message }}</p>
+</div>
+{% endfor %}
+{% block content %}
+
+{% endblock %}
+<footer>
+    <span>pour echanger avec nous</span>
+    <a href="https://discord.gg/xCZjaKjSZt" target="_blank">
+        <div class="taillePhotoDiscord">
+            <img src="{{ asset('img/discord.png') }}" alt="photo discord">
+        </div>
+    </a>
+</footer>
+</body>
+</html>
+
+
+
+
+
+

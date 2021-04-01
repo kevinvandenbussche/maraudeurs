@@ -1,0 +1,421 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* pour que les photos soient a la dimension de la boite */
+.resp{
+    width: 100%;
+    height: auto;
+}
+
+.taillePhoto{
+    width: 50%
+}
+/* pour faire disparaitre les photo pour les faire apparaitre dans les media queries */
+.phone{
+    display: none;
+}
+
+span{
+    font-size: 1.5em;
+    margin-top: 15px;
+    text-align: center;
+    display: block;
+
+}
+
+h1 {
+    color: #00E7FF;
+    font-family: "Orbitron", serif;
+}
+
+h2{
+    color: #00E7FF;
+    font-family: "Orbitron", serif;
+    font-size: 1.5em;
+}
+
+p,
+a,
+span {
+    font-family: "Electrolize", sans-serif;
+    color: #ffffff;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+li {
+    list-style: none;
+    /* margin-bottom: 50px; */
+}
+/* pour l rendre plus jolie l'effet de scale */
+.scale {
+    transition: all ease-in-out 0.5s;
+}
+
+.scale:hover {
+    transition: all ease-in-out 0.5s;
+    transform: scale(1.1);
+}
+
+a {
+    text-decoration: none;
+    font-size: 2em;
+    display: block;
+}
+
+a:hover {
+    transition: all ease-in-out 0.5s;
+    color: white;
+    text-decoration: none;
+}
+
+p {
+    padding: 30px;
+}
+
+p:hover {
+    transition: all ease-in-out 1s;
+    background-color: #00e5ff15;
+}
+
+h1 {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5%;
+    display: block;
+}
+
+.descriptif {
+    padding: 5%;
+}
+
+.coinTop {
+    position: relative;
+}
+/* scale pour mettre la barre exterieur vers le haut (les coins)*/
+.coinBottom {
+    position: relative;
+    transform: scale(-1);
+}
+/* ************************faire l'effet, donner la dimension et la couleur au coin ************************* */
+.coinBottom::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #0A89BB;
+    border-left: 1px solid #0A89BB;
+    transition: all ease-in-out 0.5s;
+}
+
+.coinTop::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #0A89BB;
+    border-left: 1px solid #0A89BB;
+    transition: all ease-in-out 0.5s;
+}
+
+.coinBottom::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 1px;
+    border-right: 1px solid #0A89BB;
+    border-top: 1px solid #0A89BB;
+    transition: all ease-in-out 0.5s;
+}
+
+.coinTop::before {
+    content: "";
+    position: absolute;
+    right: 1px;
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #0A89BB;
+    border-right: 1px solid #0A89BB;
+    transition: all ease-in-out 0.5s;
+}
+/* ************************************************************************************************************ */
+/* padding pour decoller les coins du paragraphe */
+.effet {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.2à);
+}
+/* ****************************pseudo classe pour fabriquer l'effet sur les coins *********************************** */
+.effet:hover .coinTop::before {
+    transform: translate(-20px, 30px);
+    transition: all ease-in-out 0.5s;
+}
+.effet:hover .coinTop::after {
+    transform: translate(20px, 30px);
+    transition: all ease-in-out 0.5s;
+}
+.effet:hover .coinBottom::before {
+    transform: translate(-20px, 30px);
+    transition: all ease-in-out 0.5s;
+}
+.effet:hover .coinBottom::after {
+    transform: translate(20px, 30px);
+    transition: all ease-in-out 0.5s;
+}
+/* ********************************************************************************************************** */
+
+.dekstop {
+    margin-bottom: 0;}
+
+body {
+    background-image: url("../img/thumb-1920-935315.png");
+    background-repeat: repeat;
+    color: rgba(0, 0, 0, 0.9);
+    position: sticky;
+}
+
+header {
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    padding: 0 20px;
+}
+
+.lore{
+    height: 5vh;
+}
+
+header>div{
+    display: flex;
+    justify-content: space-between;
+}
+
+header>img{
+    width:30%;
+}
+
+header div a{
+    width:10%;
+    font-size: 1em;
+}
+
+a img{
+    width: 30%;
+}
+
+.photoPrincipal{
+    padding-bottom: 10%;
+}
+
+.taillePhotoPrincipal{
+    width: 20%;
+}
+
+.taillePhotoPrincipalMaraudeurs{
+    width: 50%;
+    margin: 5%;
+
+}
+
+#bandeauMenu {
+    display: flex ;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    bottom: -5px;
+    left: 0;
+    background-color: rgba(13, 46, 66, 0.5);
+    margin: auto;
+    border-top: solid 1px #3994d1;
+    border-bottom: solid 1px #3994d1;
+}
+
+#boiteTransparente {
+    width: 100%;
+    position: relative;
+    background-color: rgba(13, 46, 66, 0.5);
+    border-top: solid 1px #3994d1;
+    border-bottom: solid 1px #3994d1;
+    height: 10vh;
+}
+
+.wrapperHeader {
+    position: sticky;
+    top: 0;
+}
+
+footer{
+    background-color: black;
+    padding: 40px 20px;
+
+}
+
+footer img{
+    width: 40px;
+    margin : auto;
+}
+
+.taillePhotoDiscord{
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+
+/*****************************************gestion des fichiers dynamiques ********************************************/
+.titleAdmin{
+    padding-top: 50px;
+}
+
+.titleCrud{
+    text-align: center;
+}
+
+.message{
+    background-color: rgba(13, 46, 66, 0.5);
+}
+
+.message>p{
+    color:white;
+    text-align: center;
+}
+
+.border{
+    background-color: white;
+    transform: rotateZ(45deg);
+    margin: 5px;
+}
+
+
+.menuCrud h2{
+    text-align: center;
+}
+
+.containerElement{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menuCrud{
+    width:50%;
+    padding: 10px;
+
+}
+
+.linkCrud{
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.menuCrud a{
+    font-size: 1em;
+}
+
+@media screen and (min-width:320px) and (max-width:850px){
+    /* FAIRE DROP DOWN POUR TELEPHONE */
+    header{
+        height: 70vh;
+    }
+    /* pour faire disparaitre la photo de gauche */
+    .none{
+        display: none;
+    }
+
+    /* pour mettre tout le contenu en colonne */
+    .flex{
+        flex-direction: column;
+    }
+    /* pour enlever les marges */
+    p{
+        padding: 10px;
+    }
+
+    main{
+        justify-content: center;
+    }
+    /* pour faire disparaitre le menu dans la barre bleu */
+    .dekstop{
+        display: none;
+    }
+    /* pour faire disparaitre l'effet des coin et les coins */
+    .coinBottom, .coinTop{
+        display: none;
+    }
+
+    .flexForPhone{
+        display: flex;
+    }
+
+    .phone{
+        display: block;
+    }
+
+    .taillePhoto{
+        width: 20%;
+    }
+
+
+    /* pour eviter que le titre soit sur plusieur ligne */
+    .mediaTitre{
+        width: 90%;
+    }
+
+    #photoPrincipal{
+        display: flex;
+    }
+
+    /* les deux class sont la pour passer la priorité css (2 classes plus precis qu'une seul) sinon la class flex prend la priorite et elle en reste en coloumn*/
+    .flex.flexPhone{
+        flex-direction: row;
+    }
+    /* pour faire disparaitre le texte en version phone */
+    .effet{
+        height:0;
+        opacity:0;
+        transition: all ease .8s;
+    }
+    /* pb de selection de mes div avec la classe effet qui me decale le pointeur et qui m empeche de selectionner la bonne section, du coup je l'enleve de toute mes div */
+    .effet *{
+        display: none;
+    }
+    /* pour pouvoir afficher le contenu de la div 'effet je la fait reaparaitre sinon les p ne serait pas affiche */
+    .effet.active *{
+        display: block;
+    }
+
+    .effet.active{
+        height: auto;
+        opacity: 1;
+    }
+
+    .relative{
+        position: relative;
+    }
+    /* pseudo classe pour faire apparaitre la photo du doigt */
+    .relative::after{
+        content:"";
+        position: absolute;
+        bottom:-10px;
+        left:50%;
+        transform: translateX(-50%);
+        width:35px;
+        height:35px;
+        background-image: url("../img/tap.svg");
+        background-size: cover;
+    }
+
+}

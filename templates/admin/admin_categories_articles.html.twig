@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'header/header.lore.html.twig' %}
+{% endblock %}
+{% block content %}
+
+    <h1 class="titleAdmin">Les categories</h1>
+    <a class="titleCrud" href="{{ path('insert_category') }}">CREER UNE NOUVELLE CATEGORIE</a>
+            <div class="containerElement">
+            {% for category in categories %}
+                <div class="menuCrud">
+                        <h2>{{ category.name }}</h2>
+                        <div class="linkCrud">
+                            <a href="{{ path('update_category', {'id' : category.id}) }}">modifier la categorie</a>
+                            <div class="border"></div>
+                            <a href="{{ path('delete_category', {'id' : category.id}) }}">supprimer la categorie</a>
+                        </div>
+                </div>
+            {% endfor %}
+            </div>
+
+
+{% endblock %}
