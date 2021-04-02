@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1 class="titleAdmin">modification ou supression des categories</h1>
+    <h1 class="titleAdmin">Modification ou Supression de Categorie</h1>
     <h2>nom de la categorie</h2>
     {{ form_start(categories) }}
-    {{ form_label(categories.name) }}
-    {{ form_widget(categories.name) }}
+    <div class="input">
+        {{ form_widget(categories.name) }}
+    </div>
+    <div class="submit">
     {{ form_widget(categories.submit) }}">
+    </div>
     {{ form_end(categories) }}
 
 {% endblock %}

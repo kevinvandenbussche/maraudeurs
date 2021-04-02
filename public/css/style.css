@@ -21,7 +21,9 @@ span{
     margin-top: 15px;
     text-align: center;
     display: block;
-
+}
+footer span{
+    font-size: 0.5em;
 }
 
 h1 {
@@ -33,6 +35,7 @@ h2{
     color: #00E7FF;
     font-family: "Orbitron", serif;
     font-size: 1.5em;
+    text-align: center;
 }
 
 p,
@@ -156,7 +159,7 @@ h1 {
 /* padding pour decoller les coins du paragraphe */
 .effet {
     padding: 20px;
-    background-color: rgba(0,0,0,0.2à);
+    background-color: rgba(0,0,0,0.2);
 }
 /* ****************************pseudo classe pour fabriquer l'effet sur les coins *********************************** */
 .effet:hover .coinTop::before {
@@ -274,7 +277,36 @@ footer img{
     margin: auto;
     text-align: center;
 }
+/*****************************************gestion des formulaires*****************************************************/
+.titleLabel{
+    text-align: center;
+    color:white;
+    width: 100%;
+    font-size: 2em;
+    padding-top: 20px;
+}
+.inputLabel{
+    text-align: center;
+    /*width: 50%;*/
+}
+.input{
+    text-align: center;
+}
+.submit{
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+}
 
+input, select, textarea {
+    width: 60%;
+    margin: 0 auto;
+    font-family: "Electrolize", sans-serif;
+
+}
+label{
+    font-family: "Electrolize", sans-serif;
+}
 /*****************************************gestion des fichiers dynamiques ********************************************/
 .titleAdmin{
     padding-top: 50px;

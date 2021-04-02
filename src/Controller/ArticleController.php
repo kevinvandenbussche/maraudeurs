@@ -57,8 +57,9 @@ class ArticleController extends AbstractController
                 'success',
                 'l\' article a été creé'
             );
-            //je renvoi l'utilisateur sur la page de formulaire de création
-            return $this->redirectToRoute('insert_article');
+            //je renvoi l'utilisateur sur le formulaire de modfication et j'indique l'id pour pouvoir indiquer a doctrine
+            //quelle article il doit afficher
+            return $this->redirectToRoute('update_article', ['id'=>$article->getId()]);
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
         return $this->render('insert_update_article.html.twig', [
