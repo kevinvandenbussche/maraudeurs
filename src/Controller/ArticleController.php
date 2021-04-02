@@ -19,10 +19,13 @@ class ArticleController extends AbstractController
      */
     public function displayArticles(ArticleRepository $articleRepository, $id, CategoryArticleRepository $categoryArticleRepository)
     {
-
+        //je fais une requête de type select avec doctrine dans ma table article qui me de recuperer les articles et je les tries avec
+        //l'id que jai dans mon URL qui correspond au champ de categorie_id dans ma BDD
         $articles = $articleRepository->findBy(['category' => $id]);
+        //je fais une requete de type select dans ma table category que je trie avec l'id qui est dans mon url
         $category = $categoryArticleRepository->find($id);
         return $this->render('articles.html.twig', [
+            //je mets le retour de mes requetes dans des variables twig
             'articles'=>$articles,
             'category'=>$category
         ]);
@@ -42,7 +45,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         //je verifie que les champs de mon formulaire sont bien remplie et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //revoi l'objet CategoryArticle avec les données du formulaire
+            //revoi l'objet Article avec les données du formulaire
             $article = $form->getData();
             //je recupere la date du jour avec  le set date de mon entite
             $article->setDate( new \DateTime());
@@ -50,14 +53,14 @@ class ArticleController extends AbstractController
             $article->getUser();
             //je mets mes données dans une boite en attente d'envoi en base de donnée
             $entityManager->persist($article);
-            //j'envoi mon objet en base de donnée
+            //je mets l'entité manager pour pre-sauvegarder mon entité Article
             $entityManager->flush();
             //j'affiche un message flash
             $this->addFlash(
                 'success',
                 'l\' article a été creé'
             );
-            //je renvoi l'utilisateur sur le formulaire de modfication et j'indique l'id pour pouvoir indiquer a doctrine
+            //je renvoi l'utilisateur sur le formulaire de modfication et j'indique l'id pour pouvoir indiquer a symfony
             //quelle article il doit afficher
             return $this->redirectToRoute('update_article', ['id'=>$article->getId()]);
         }
@@ -102,6 +105,7 @@ class ArticleController extends AbstractController
 
     public function showArticle($id,ArticleRepository $articleRepository)
     {
+        //je recupere un article et l'ID  me permet de savoir quelle article precisement je dois recupere
         $article=$articleRepository->find($id);
 
         return $this->render('show_article.html.twig', [
@@ -124,7 +128,7 @@ class ArticleController extends AbstractController
             'l\'article a été supprimé'
         );
         //je renvoi l'utilisateur vers la page des categories
-        return $this->redirectToRoute('display_article');
+        return $this->redirectToRoute('display_categories');
 
     }
 
