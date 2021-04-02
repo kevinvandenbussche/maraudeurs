@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,15 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route ("/articles", name="display_articles")
+     * @Route ("/articles/{id}", name="display_articles")
      */
-    public function displayArticles(ArticleRepository $articleRepository)
+    public function displayArticles(ArticleRepository $articleRepository, $id, CategoryArticleRepository $categoryArticleRepository)
     {
-        $articles= $articleRepository->findAll();
 
-        return $this->render('categories_articles.html.twig',
-                ['articles'=>$articles]
-        );
+        $articles = $articleRepository->findBy(['category' => $id]);
+        $category = $categoryArticleRepository->find($id);
+        return $this->render('articles.html.twig', [
+            'articles'=>$articles,
+            'category'=>$category
+        ]);
     }
 
     /**
@@ -64,7 +67,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route ("/update/article", name="update_article")
+     * @Route ("/update/article/{id}", name="update_article")
      */
 
         //j'utilise l'autowire pour instanicer ma méthode
@@ -86,11 +89,42 @@ class ArticleController extends AbstractController
             );
 
         }
-        return $this->render('insert_update_articles.html.twig', [
+        return $this->render('insert_update_article.html.twig', [
             'articles' => $form->createView()
         ]);
 
     }
 
+    /**
+     * @Route("/show/article/{id}", name="show_article")
+     */
+
+    public function showArticle($id,ArticleRepository $articleRepository)
+    {
+        $article=$articleRepository->find($id);
+
+        return $this->render('show_article.html.twig', [
+            'article' => $article
+        ]);
+    }
+    /**
+     * @Route ("/delete/article/{id}", name="delete_article")
+     */
+    public function deleteArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+
+        $article= $articleRepository->find($id);
+        //j'utilise la methode remove de doctrine qui me permet de faire la requete qui supprime la donnée
+        $entityManager->remove($article);
+        //j'envoie ne base de donnée
+        $entityManager->flush();
+        $this->addFlash(
+            'success',
+            'l\'article a été supprimé'
+        );
+        //je renvoi l'utilisateur vers la page des categories
+        return $this->redirectToRoute('display_article');
+
+    }
 
 }

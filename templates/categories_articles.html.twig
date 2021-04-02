@@ -9,15 +9,12 @@
             <div class="containerElement">
             {% for category in categories %}
                 <div class="menuCrud">
-                        <h2>{{ category.name }}</h2>
+                    <a href="{{ path('display_articles', {'id': category.id }) }}"><h2>{{ category.name }}</h2></a>
                         <div class="linkCrud">
                             <a href="{{ path('update_category', {'id' : category.id}) }}">modifier la categorie</a>
                             <div class="border"></div>
                             <a href="{{ path('delete_category', {'id' : category.id}) }}">supprimer la categorie</a>
                         </div>
-                    {% for article in category.article %}
-                    <h3>{{ article.title }}</h3>
-                    {% endfor %}
                 </div>
             {% endfor %}
             </div>

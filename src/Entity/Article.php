@@ -135,7 +135,7 @@ class Article
     /**
      * @return ArrayCollection
      */
-    public function getMedia(): ArrayCollection
+    public function getMedia()
     {
         return $this->media;
     }
@@ -143,7 +143,7 @@ class Article
     /**
      * @param ArrayCollection $media
      */
-    public function setMedia(ArrayCollection $media): void
+    public function setMedia($media): void
     {
         $this->media = $media;
     }
