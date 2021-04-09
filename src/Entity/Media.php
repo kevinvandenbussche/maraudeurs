@@ -13,10 +13,11 @@ class Media
 {
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="media")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
-    //j'indique a doctrine que des plusieurs media peuvent etre dans articles
+    //j'indique a doctrine que plusieurs media peuvent etre dans articles
     /**
      * @ORM\ManyToMany (targetEntity="App\Entity\Article", mappedBy="media")
      */
@@ -91,7 +92,7 @@ class Media
     /**
      * @return ArrayCollection
      */
-    public function getArticle(): ArrayCollection
+    public function getArticle()
     {
         return $this->article;
     }

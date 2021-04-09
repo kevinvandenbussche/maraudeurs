@@ -20,7 +20,13 @@
         </div>
         {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="input">
-            {{ form_widget(articles.media) }}
+{#            <ul class="tags" data-prototype="{{ form_widget(articles.media.vars.prototype)|e('html_attr') }}">#}
+{#                {% for media in articles.media %}#}
+{#                <li>{{ form_row(articles.media) }}</li>#}
+{#                {% endfor %}#}
+            </ul>
+            <button type="button" class="add_item_link" data-collection-holder-class="tags">ajouter un fichier</button>
+            <img src="{{ asset('img/plus.jpeg')}}" alt="">
         </div>
 
         <div class="submit">

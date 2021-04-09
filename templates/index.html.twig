@@ -124,7 +124,7 @@
                             Nous avons pour mission de protéger l’espace aérien en étroite collaboration avec une escorte de vaisseaux léger et moyens lors d’opération de combat, de transactions importantes ou d’opération de minage.<br>
                             Nous avons également pour missions de protéger d’autres vaisseaux capitaux ayant une orientation plus civile, de maintenir et protéger une position essentielle à la sécurité de la corporation ainsi que de fournir un appui-feu aérien aux troupes terrestres.<br>
                             Nous formons nos propres pilotes de vaisseau lourd, nos artilleurs et nos opérateurs de vaisseaux de combats lourds mais nous formons également les pilotes de vaisseaux larges et capitaux nécessaires aux autres sections de notre corporation.<br>
-                            La section DRAGONS représente la colonne vertébrale de la corporation MARAUDERS lors de déplacements interstellaires ou lors d’opérations de combat</br><span>"QUE NOS AILE NOUS ENFLAMMENT PAR DELA L'UNIVERS".</span>
+                            La section DRAGONS représente la colonne vertébrale de la corporation MARAUDERS lors de déplacements interstellaires ou lors d’opérations de combat</br><span>"QUE NOS AILES NOUS ENFLAMMENT PAR DELA L'UNIVERS".</span>
                         </p>
                         <div class="coinBottom"></div>
                     </div>
@@ -212,17 +212,31 @@
 <script>
 
     // creer une boucle pour pouvoir appliquer la fonction a toutes mes div
+    //j'utilise javascript pour pouvoir ajouter une classe ou enlever une classe
     const descriptifs = document.querySelectorAll('.descriptif');
     const parCerbere = document.querySelectorAll('.descriptif .effet');
-    const descriptif = document.querySelector('descriptif');
-
+    //je mets tout dans un tableau pour pouvoir faire une boucle
     descriptifs.forEach((el, i) => {
-        console.log(i);
+        //j'utilise la methode querySelector qui va ecouter l'evenement du click sur la classe descriptif
         el.addEventListener('click', function(){
+            //la fonction toggle me permet d'ajouter ou d'enlever classe active
             parCerbere[i].classList.toggle('active');
 
         });
     })
+    function addFormToCollection($collectionHolderClass) {
+
+        var $collectionHolder = $('.' + $collectionHolderClass);
+        var prototype = $collectionHolder.data('prototype');
+        var index = $collectionHolder.data('index');
+        var newForm = prototype;
+        newForm = newForm.replace(/__name__/g, index);
+        $collectionHolder.data('index', index + 1);
+        var $newFormLi = $('<li></li>').append(newForm);
+        $collectionHolder.append($newFormLi)
+
+    }
+
 
 </script>
 {% endblock %}

@@ -4,13 +4,17 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Media;
 use App\Form\ArticleType;
+use App\Form\MediaType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ArticleController extends AbstractController
 {
@@ -34,7 +38,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("insert/article", name="insert_article")
      */
-    public function insertArticle(Request $request, EntityManagerInterface $entityManager)
+    public function insertArticle(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
         //je creer un nouvelle entité que je mets dans une variable
         $article = new Article();
@@ -51,9 +55,36 @@ class ArticleController extends AbstractController
             $article->setDate( new \DateTime());
             // je recupere l'id du user qui publie l'article
             $article->getUser();
-            //je mets mes données dans une boite en attente d'envoi en base de donnée
-            $entityManager->persist($article);
+            //je recuoere mon tableau de media que je mets dans un varaible
+            $medias = $form->get('media')->getData();
+            if($medias){
+                //je boucle dessus
+                foreach ($medias as $media){
+                    //je recupere le nom original de mon fichier que je stock dans une variable
+                    $originalFilename = pathinfo($media->getClientOriginalName(),PATHINFO_FILENAME);
+                    //j'utilise la methode slugger qui me permet de nettoyer le nom de fichier et pouvoir l'expoliter
+                    //dans l'URL
+                    $safeFile = $this->$slugger->slug($originalFilename);
+                    //je concatene le slug de mon fichier avec son type de fichier
+                    $newfiles = $safeFile.'-'.uniqid().'.'.$media->guessextention();
+                    //le try va executer mon code
+                    try {
+                        //je deplace mon fichier
+                        $media->move(
+                            //je le mets dans le dossier files qui est dans public
+                            $this->getParameter('media_directory'),
+                            $newfiles
+                        );
+                    //si le code ne s'effectue pas je fais remonter une erreur a l'utilisateur
+                    }catch (FileException $e){
+                        //si le fichier ne deplace je fais remonter un message d'erreur
+                        throw new \Exception("le fichier n\'a pas été enregistré");
+                    }
+                }
+            };
             //je mets l'entité manager pour pre-sauvegarder mon entité Article
+            $entityManager->persist($article);
+            //j'envoi mon entité en bdd
             $entityManager->flush();
             //j'affiche un message flash
             $this->addFlash(

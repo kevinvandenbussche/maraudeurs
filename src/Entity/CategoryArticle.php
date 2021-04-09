@@ -16,7 +16,6 @@ class CategoryArticle
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category_article")
      */
-
     private $article;
 
 

@@ -31,6 +31,7 @@ class Article
      */
     private $media;
     /**
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
