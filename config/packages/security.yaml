@@ -20,7 +20,7 @@ security:
             provider: app_user_provider
             guard:
                 authenticators:
-                    - App\Security\UserAuthentificatorAuthenticator
+                    - App\Security\UserAuthentificator
             logout:
                 path: app_logout
                 # where to redirect after logout
