@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+{% include 'header/header.lore.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.articleContent }}</p>
+    
+
+{% endblock %}
