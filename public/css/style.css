@@ -290,13 +290,16 @@ footer{
     padding: 40px 20px;
     bottom: 0;
     width: 100%;
-    position: absolute;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-footer img{
-    width: 40px;
-    margin : auto;
+footer a {
+    width: 40%;
 }
+
 
 .taillePhotoDiscord{
     width: 20%;

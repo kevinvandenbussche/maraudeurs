@@ -18,10 +18,9 @@ class ArticleType extends AbstractType
     {
         //add correspond au ligne de mon formulaire qui eu meme corresponde au champ de mon entité
         $builder
-            ->add('text')
             ->add('articleContent')
             ->add('title')
-            //je precise asymfony que ce champ est une entité
+            //je precise a symfony que ce champ est une entité
             ->add('category', EntityType::class,[
                 //je lui indique que c'est l'entité categoryArticle
                 'class' => CategoryArticle::class,

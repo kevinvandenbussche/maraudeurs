@@ -39,11 +39,6 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $text;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $articleContent;
@@ -63,22 +58,9 @@ class Article
         $this->media = new ArrayCollection();
     }
 
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getText(): ?string
-    {
-        return $this->text;
-    }
-
-    public function setText(string $text): self
-    {
-        $this->text = $text;
-
-        return $this;
     }
 
     public function getArticleContent(): ?string
