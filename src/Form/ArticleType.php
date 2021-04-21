@@ -34,7 +34,7 @@ class ArticleType extends AbstractType
             ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'user'
+                'choice_label' => 'pseudonyme'
             ])
             //j'indique a symfony que mon l'objet qu'il recoit est un tableau
             ->add('media', CollectionType::class, [

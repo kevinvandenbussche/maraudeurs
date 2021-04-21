@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+{% endblock %}
+{% block content %}
+    <h1>Nos Membres</h1>
+    {% for user in users %}
+        <span>{{ user.pseudonyme }}</span>
+        {% for toto in user.roles %}
+            {{ dump (toto)}}
+        <span>{{ toto.user.roles }}</span>
+        {% endfor %}
+
+    {% endfor %}
+{% endblock%}

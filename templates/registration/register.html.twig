@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>S'inscrire</h1>
+
+    {{ form_start(registrationForm) }}
+        {{  form_label(registrationForm.pseudonyme, 'Votre Pseudonyme', {'label_attr': {'class': 'titleLabel'}}) }}
+        <div class="input">
+            {{ form_widget(registrationForm.pseudonyme) }}
+        </div>
+        {{ form_label(registrationForm.email, 'Votre Email', {'label_attr': {'class': 'titleLabel'}}) }}
+        <div class="input">
+            {{ form_widget(registrationForm.email) }}
+        </div>
+        {{ form_label(registrationForm.plainPassword, 'Votre Mot de Passe', {'label_attr': {'class': 'titleLabel'}}) }}
+        <div class="input">
+            {{ form_widget(registrationForm.plainPassword) }}
+        </div>
+        <button type="submit" class="submit btn">Enregistrer</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
