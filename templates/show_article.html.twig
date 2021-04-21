@@ -6,6 +6,9 @@
 {% block content %}
     <h1>{{ article.title }}</h1>
     <p>{{ article.articleContent }}</p>
-    
-
+    <div class="linkCrudArticle">
+        <a href="{{ path('update_article', {'id' : article.id}) }}">modifier l'article</a>
+        <div class="border"></div>
+        <a href="{{ path('delete_article', {'id' : article.id}) }}">supprimer l'article</a>
+    </div>
 {% endblock %}

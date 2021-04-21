@@ -4,13 +4,18 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\CategoryArticle;
+use App\Entity\Media;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArticleType extends AbstractType
 {
@@ -37,22 +42,28 @@ class ArticleType extends AbstractType
                 'entry_type' => MediaType::class,
 
             ])
-//            ->add('media', MediaType::class)
-//            ->add('media', FileType::class, [
-//                'label' => 'media',
-//                'required' => false,
-//                'mapped' => false,
-//                'constraints' => [
-//                    new File([
-//                        'maxSize' => '1024k',
-//                        'mimeTypes' => [
-//                            'application/pdf',
-//                            'application/x-pdf',
-//                        ],
-//                        'mimeTypesMessage' => 'Veuillez télécharger des fichiers de type PDF',
-//                    ])
-//                ],
-//            ])
+            ->add('media', MediaType::class)
+            ->add('media', FileType::class,[
+                'label' => 'Joindre votre(ou vos) document(s)',
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new All([
+                        'constraints' => [
+                            new File([
+                                'maxSize' => '1024k',
+                                'mimeTypesMessage' => 'Veuillez choisir un document au format pdf',
+                                'mimeTypes' => [
+                                    'image/jpeg',
+                                    'image/png',
+                                    'image/svg'
+                                ]
+                            ]),
+                        ],
+                    ]),
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer'
             ])

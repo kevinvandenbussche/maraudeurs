@@ -18,20 +18,32 @@
 {% endblock %}
 <!-- la nav est sortie de la structure HTML classique pour pouvoir etre sticky au body directement-->
 <nav class="wrapperHeader">
-    <div id="boiteTransparente">
-        <div id="bandeauMenu">
-            <ul class="dekstop">
-                <li class="scale"><a href="{{ path ('home_page') }}">ACCUEIL</a></li>
+    <div class="page">
+        <div id="boiteTransparente">
+            <div id="bandeauMenu">
+                <ul class="dekstop">
+                    <li class="scale"><a href="{{ path ('home_page') }}">ACCUEIL</a></li>
 
-                <li class="scale"><a href="{{ path ('lore_page') }}">LORE</a></li>
+                    <li class="scale"><a href="{{ path ('lore_page') }}">LORE</a></li>
 
-                <li class="scale"><a href="{{ path('display_categories') }}">DOCUMENTATION</a></li>
+                    <li class="scale"><a href="{{ path('display_categories') }}">DOCUMENTATION</a></li>
 
-                <li class="scale"><a href="https://robertsspaceindustries.com/" target="_blank">SITE RSI</a></li>
-            </ul>
+                    <li class="scale"><a href="https://robertsspaceindustries.com/" target="_blank">SITE RSI</a></li>
+                </ul>
+            </div>
         </div>
+        <div id="menu-button" class="close"></div>
+        <nav id="menu" class="wrapperHeader">
+            <ul class="burger">
+                <li class="liBurger"><a href="{{ path ('home_page') }}">ACCUEIL</a></li>
+                <li class="liBurger"><a href="{{ path ('lore_page') }}">LORE</a></li>
+                <li class="liBurger"><a href="{{ path('display_categories') }}">DOCUMENTATION</a></li>
+                <li class="liBurger"><a href="https://robertsspaceindustries.com/" target="_blank">SITE RSI</a></li>
+            </ul>
+        </nav>
     </div>
 </nav>
+
 {% for message in app.flashes('success') %}
 <div class="message">
     <p>{{ message }}</p>
@@ -50,6 +62,8 @@
 </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script src="{{ asset('js/upload.js') }}"></script>
+<script src="{{ asset('js/respawnsive.js') }}"></script>
 </html>
 
 

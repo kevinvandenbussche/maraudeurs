@@ -9,6 +9,7 @@ use App\Form\ArticleType;
 use App\Form\MediaType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryArticleRepository;
+use App\Repository\MediaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -38,7 +39,8 @@ class ArticleController extends AbstractController
     /**
      * @Route("insert/article", name="insert_article")
      */
-    public function insertArticle(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function insertArticle(Request $request,
+                                  EntityManagerInterface $entityManager)
     {
         //je creer un nouvelle entité que je mets dans une variable
         $article = new Article();
@@ -49,42 +51,45 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         //je verifie que les champs de mon formulaire sont bien remplie et valide
         if ($form->isSubmitted() && $form->isValid()) {
+//            dump($request->request->get('test'));
+//            dd($form);
             //revoi l'objet Article avec les données du formulaire
             $article = $form->getData();
-            //je recupere la date du jour avec  le set date de mon entite
+            //je recupere la date du jour avec le set date de mon entite
             $article->setDate( new \DateTime());
             // je recupere l'id du user qui publie l'article
             $article->getUser();
-            //je recuoere mon tableau de media que je mets dans un varaible
+            //je recupere mon tableau de media que je mets dans une variable
             $medias = $form->get('media')->getData();
+
             if($medias){
                 //je boucle dessus
                 foreach ($medias as $media){
-                    //je recupere le nom original de mon fichier que je stock dans une variable
-                    $originalFilename = pathinfo($media->getClientOriginalName(),PATHINFO_FILENAME);
-                    //j'utilise la methode slugger qui me permet de nettoyer le nom de fichier et pouvoir l'expoliter
-                    //dans l'URL
-                    $safeFile = $this->$slugger->slug($originalFilename);
-                    //je concatene le slug de mon fichier avec son type de fichier
-                    $newfiles = $safeFile.'-'.uniqid().'.'.$media->guessextention();
-                    //le try va executer mon code
+                    //je modifie le nom de mon fichier pour pouvoir le stocker en bdd
+                    $newfiles = md5(uniqid()).'.'.$media->guessExtension();
+
                     try {
                         //je deplace mon fichier
                         $media->move(
                             //je le mets dans le dossier files qui est dans public
                             $this->getParameter('media_directory'),
                             $newfiles
+
                         );
                     //si le code ne s'effectue pas je fais remonter une erreur a l'utilisateur
                     }catch (FileException $e){
                         //si le fichier ne deplace je fais remonter un message d'erreur
                         throw new \Exception("le fichier n\'a pas été enregistré");
                     }
+                    $media = new Media();
+                    $media->setUrl($newfiles)
+                            ->setName($form->get('title')->getData());
+
+                    $entityManager->persist($media);
                 }
-            };
+            }
             //je mets l'entité manager pour pre-sauvegarder mon entité Article
             $entityManager->persist($article);
-            //j'envoi mon entité en bdd
             $entityManager->flush();
             //j'affiche un message flash
             $this->addFlash(
@@ -93,8 +98,9 @@ class ArticleController extends AbstractController
             );
             //je renvoi l'utilisateur sur le formulaire de modfication et j'indique l'id pour pouvoir indiquer a symfony
             //quelle article il doit afficher
-            return $this->redirectToRoute('update_article', ['id'=>$article->getId()]);
+            return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
         }
+
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
         return $this->render('insert_update_article.html.twig', [
             'articles' => $form->createView()
@@ -136,7 +142,7 @@ class ArticleController extends AbstractController
 
     public function showArticle($id,ArticleRepository $articleRepository)
     {
-        //je recupere un article et l'ID  me permet de savoir quelle article precisement je dois recupere
+        //je recupere un article et l'ID  me permet de savoir quelle article precisement je dois recuperer
         $article=$articleRepository->find($id);
 
         return $this->render('show_article.html.twig', [

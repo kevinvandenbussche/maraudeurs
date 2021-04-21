@@ -36,6 +36,8 @@ class CategoriesArticlesController extends AbstractController
     //j'instancie ma méthode avec des services de symfony
     public function insertCategory(Request $request, EntityManagerInterface $entityManager)
     {
+        $title = 'Création';
+
         //je creer un nouvelle entité que je mets dans une variable
         $category = new CategoryArticle();
         //j'utilise une methode d'AbstractController qui me permet de créer un formulaire avec les champs de mon
@@ -61,7 +63,8 @@ class CategoriesArticlesController extends AbstractController
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
         return $this->render('insert_update_category_articles.html.twig', [
-            'categories' => $form->createView()
+            'categories' => $form->createView(),
+            'title' => $title
             ]);
     }
     // je creer une route avec en parametre une wild card qui equivaut a l'id de la category souhaitez
@@ -73,6 +76,8 @@ class CategoriesArticlesController extends AbstractController
     {
         //j'utilise doctrine pour faire une requete select avec en paramatre l'id qui est dans l'url que je mets dans un variable
         $category= $categoryArticleRepository->find($id);
+
+        $title = 'Modification';
 
         $form= $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -88,7 +93,8 @@ class CategoriesArticlesController extends AbstractController
 
         }
         return $this->render('insert_update_category_articles.html.twig', [
-            'categories' => $form->createView()
+            'categories' => $form->createView(),
+            'title' => $title
         ]);
     }
     //je creer une route avec une wild card

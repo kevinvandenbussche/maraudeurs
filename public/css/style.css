@@ -202,7 +202,12 @@ h1 {
 /* ********************************************************************************************************** */
 
 .dekstop {
-    margin-bottom: 0;}
+    margin-bottom: 0;
+}
+
+.listPhone{
+    display: none;
+}
 
 body {
     background-image: url("../img/thumb-1920-935315.png");
@@ -387,6 +392,26 @@ button{
     margin-left: 5px;
 }
 
+.linkCrudArticle{
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.linkCrudArticle a{
+    font-size: 1em;
+
+
+}
+
+#menu-button{
+    display: none;
+}
+
+#menu{
+    display: none;
+}
+
 .menuCrud a{
     font-size: 1em;
 }
@@ -500,6 +525,98 @@ h3{
     .menuCrud{
         width: 100%;
         margin: 0 auto;
+    }
+    li a{
+        font-size: 1em;
+    }
+/*****************************************************************************************    */
+
+    .page{
+        font-family:sans-serif;
+        max-width:850px;
+        margin:0 auto;
+        background:#000;
+        color:#fff;
+        line-height:1.5;
+        position:relative;
+    }
+
+
+
+    .header-title{
+        line-height:50px;
+        font-size:22px;
+    }
+
+    .burger{
+        margin-top: 80px;
+    }
+    .burger,.liBurger{
+        display:block;
+    }
+    .liBurger{
+        height:50px;
+        line-height:50px;
+        padding:0 12px;
+        border-bottom:1px solid #777;
+        background-color: rgb(13, 46, 66);
+        margin-left: 15px;
+
+    }
+
+    #menu-button{
+        position:absolute;
+        top:0;
+        right:0;
+        width:50px;
+        height:50px;
+        overflow:hidden;
+        background:#fff;
+        color:#000;
+        line-height:50px;
+        text-align:center;
+        font-size:40px;
+        transition:all .5s;
+    }
+
+
+    #menu-button::after{
+        content:'×';
+    }
+    #menu-button.close{
+        color:#fff;
+        background:#000;
+    }
+
+    #menu-button{
+        margin-top: 20px;
+    }
+    #menu-button.close::after{
+        content:'≡';
+    }
+
+    #menu{
+        transition:transform .5s;
+        position:absolute;
+        width:100%;
+        max-width:480px;
+        transform:translateX(-1000px);
+
+    }
+    #menu.show-menu{
+        transform:translateX(-51px);
+    }
+
+    .main{
+        padding:62px 12px 12px 12px;
+        background-color: rgb(13, 46, 66);
+    }
+
+    #menu{
+        display: block;
+    }
+    #menu-button{
+        display: block;
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,10 +27,7 @@ class Article
     private $user;
 
     //j'indique a doctrine que les articles peuvent avoir plusieurs media
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Media", inversedBy="article")
-     */
-    private $media;
+
     /**
      *
      * @ORM\Id
@@ -49,14 +47,21 @@ class Article
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $title;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=media::class, inversedBy="articles")
+     */
+    private $mediaArticle;
+
     public function __construct()
     {
-        $this->media = new ArrayCollection();
+        $this->mediaArticle = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -115,21 +120,6 @@ class Article
         $this->category = $category;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
-
-    /**
-     * @param ArrayCollection $media
-     */
-    public function setMedia($media): void
-    {
-        $this->media = $media;
-    }
 
     /**
      * @return mixed
@@ -145,6 +135,30 @@ class Article
     public function setUser($user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return Collection|media[]
+     */
+    public function getMediaArticle(): Collection
+    {
+        return $this->mediaArticle;
+    }
+
+    public function addMediaArticle(media $mediaArticle): self
+    {
+        if (!$this->mediaArticle->contains($mediaArticle)) {
+            $this->mediaArticle[] = $mediaArticle;
+        }
+
+        return $this;
+    }
+
+    public function removeMediaArticle(media $mediaArticle): self
+    {
+        $this->mediaArticle->removeElement($mediaArticle);
+
+        return $this;
     }
 
 
