@@ -41,7 +41,7 @@ class Media
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="mediaArticle")
+     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="article")
      */
     private $articles;
 
@@ -138,5 +138,6 @@ class Media
 
         return $this;
     }
+
 
 }

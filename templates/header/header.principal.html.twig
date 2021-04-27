@@ -4,6 +4,9 @@
         <a href="https://discord.gg/xCZjaKjSZt" target="_blank">
             <img src="{{ asset ('img/discord.png') }}" alt="photo discord">
         </a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('role') }}">Gestion des Utilisateurs</a>
+        {% endif %}
         <a href="{{ path('app_login') }}" ><i class="bi bi-person-circle"></i>Connexion</a>
     </div>
     <div class="carousel slide" data-bs-ride="carousel">

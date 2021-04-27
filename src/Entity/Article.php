@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -48,11 +48,20 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(
+     *     message="Ce champs ne peut pas être vide"
+     * )
+     * @Assert\Length(
+     *     min=5,
+     *     minMessage="Votre titre est trop court",
+     *     max=100,
+     *     maxMessage="Votre titre est un peu trop long, essayez de le simplifier"
+     * )
      */
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity=media::class, inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity=media::class, inversedBy="media", cascade="persist")
      */
     private $mediaArticle;
 

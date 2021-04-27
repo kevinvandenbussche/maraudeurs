@@ -3,6 +3,11 @@
         <a href="https://discord.gg/xCZjaKjSZt" target="_blank">
             <img src="{{ asset ('img/discord.png') }}" alt="photo discord">
         </a>
-        <a href="{{ path('app_login') }}" ><i class="bi bi-person-circle"></i>Connexion</a>
+            {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('role') }}">Gestion Des Utilisateurs</a>
+        {% endif %}
+        {% if app.user %}
+            <a href="{{ path('app_login') }}" ><i class="bi bi-person-circle"></i>Connexion</a>
+        {% endif %}
     </div>
 </header>

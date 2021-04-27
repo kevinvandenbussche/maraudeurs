@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,4 +20,16 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function selectMedia():QueryBuilder
+    {
+        $entityManager= $this->getEntityManager();
+        $query= $entityManager->createQueryBuilder('a');
+            $query
+                ->select('a')
+                ->from('App\Entity\Article', 'a')
+                ->leftJoin('App\Entity\Media','m' )
+                ->getQuery()
+                ->getResult();
+
+    }
 }

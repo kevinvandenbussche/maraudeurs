@@ -11,6 +11,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route ("/user")
+ *
+ */
 //je creer une class a laquelle je fais heriter la class de symfony AbstractController
 class CategoriesArticlesController extends AbstractController
 {   //je creer une route qui me permet d'utiliser ma methode et je lui donne un nom
@@ -23,7 +28,7 @@ class CategoriesArticlesController extends AbstractController
         //je recupere toutes les données avec findAll (requete de type select) que je mets dans une variable
         $categories = $categoryArticleRepository->findAll();
         //je renvoie le tout a ma vue avec la methode render qui est hériter d'AbstractController
-        return $this->render('categories_articles.html.twig',
+        return $this->render('user/categories_articles.html.twig',
                 // je mets ma variable $categories dans une variable twig. les données recuperer sont mises
                 // dans un tableau
                 ['categories'=>$categories]
@@ -62,7 +67,7 @@ class CategoriesArticlesController extends AbstractController
             return $this->redirectToRoute('insert_category');
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
-        return $this->render('insert_update_category_articles.html.twig', [
+        return $this->render('user/insert_update_category_articles.html.twig', [
             'categories' => $form->createView(),
             'title' => $title
             ]);
@@ -92,7 +97,7 @@ class CategoriesArticlesController extends AbstractController
             );
 
         }
-        return $this->render('insert_update_category_articles.html.twig', [
+        return $this->render('user/insert_update_category_articles.html.twig', [
             'categories' => $form->createView(),
             'title' => $title
         ]);
@@ -114,7 +119,7 @@ class CategoriesArticlesController extends AbstractController
             'la categorie a été supprimé'
         );
         //je renvoi l'utilisateur vers la page des categories
-        return $this->redirectToRoute('display_categories');
+        return $this->redirectToRoute('user/display_categories');
 
     }
 

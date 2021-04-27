@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,5 +15,7 @@ class HomePageController extends AbstractController
     public function homePage()
     {
         return $this->render('index.html.twig');
+
     }
+
 }

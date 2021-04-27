@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -20,7 +21,7 @@ class User implements UserInterface
     private $media;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="user", orphanRemoval=true)
      */
     private $article;
 
@@ -33,6 +34,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
+     *
+     * @Assert\Email(
+     *     message="votre email {{ value }} n'est pas valide"
+     * )
+     * )
      */
     private $email;
 
@@ -44,6 +53,16 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length (
+     *     min="4",
+     *     minMessage="Vote mot de pase doit contenir au moins 4 caractère",
+     *      max="20",
+     *      maxMessage=" votre mot de passe doit faire plus de 20 caractères"
+     * )
+     *
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas être vide"
+     * )
      */
     private $password;
 
@@ -90,7 +109,6 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);

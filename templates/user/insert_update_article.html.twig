@@ -5,8 +5,9 @@
         {{ form_label(articles.title, 'Titre de l\'Article', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="input">
             {{ form_widget(articles.title, {'attr': {'class': 'inputLabel'}}) }}
+            {{ form_errors(articles.title) }}
         </div>
-        {{ form_label(articles.articleContent, 'Contenu de l\'Article', {'label_attr': {'class': 'titleLabel'}}) }}
+        {{ form_label(articles.articleContent, 'Decription', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="input">
             {{ form_widget(articles.articleContent) }}
         </div>
@@ -14,22 +15,21 @@
         <div class="input">
             {{ form_widget(articles.category) }}
         </div>
-        {{ form_label(articles.user, 'Utilisateur', {'label_attr': {'class': 'titleLabel'}}) }}
-        <div class="input">
-            {{ form_widget(articles.user) }}
-        </div>
-{#        {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}#}
-{#        <div id="media" class="input">#}
-{#            {{ form_widget(articles.media) }}#}
+{#        {{ form_label(articles.user, 'Utilisateur', {'attr': {'class': 'titleLabel'}}) }}#}
+{#        <div class="input">#}
+{#            {{ form_widget(articles.user) }}#}
 {#        </div>#}
-    <div id="media">
+        {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
+        <div id="media" class="input">
+            {{ form_widget(articles.media) }}
+        </div>
 
-    </div>
+    <button onclick="test()">autre fichier</button>
         <div class="submit">
             {{ form_widget(articles.submit) }}
         </div>
     {{ form_end(articles) }}
-    <button onclick="test()">+</button>
+
 
 
 {% endblock %}

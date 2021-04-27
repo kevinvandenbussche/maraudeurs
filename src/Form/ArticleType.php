@@ -34,7 +34,8 @@ class ArticleType extends AbstractType
             ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'pseudonyme'
+                'FormEvents::PRE_SET_DATA'
+                
             ])
             //j'indique a symfony que mon l'objet qu'il recoit est un tableau
             ->add('media', CollectionType::class, [
@@ -52,12 +53,11 @@ class ArticleType extends AbstractType
                     new All([
                         'constraints' => [
                             new File([
-                                'maxSize' => '1024k',
+                                'maxSize' => '50M',
                                 'mimeTypesMessage' => 'Veuillez choisir un document au format pdf',
                                 'mimeTypes' => [
-                                    'image/jpeg',
-                                    'image/png',
-                                    'image/svg'
+                                    'application/pdf',
+                                    'application/x-pdf'
                                 ]
                             ]),
                         ],

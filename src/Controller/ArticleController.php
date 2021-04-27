@@ -9,6 +9,7 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryArticleRepository;;
 
+use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,20 +17,23 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * @Route ("/user")
+ *
+ */
 class ArticleController extends AbstractController
 {
     /**
      * @Route ("/articles/{id}", name="display_articles")
      */
-    public function displayArticles(UserRepository $userRepository, ArticleRepository $articleRepository, $id, CategoryArticleRepository $categoryArticleRepository)
+    public function displayArticles( ArticleRepository $articleRepository, $id, CategoryArticleRepository $categoryArticleRepository)
     {
         //je fais une requête de type select avec doctrine dans ma table article qui me permet de recuperer les articles et je les tries avec
         //l'id que j'ai dans mon URL qui correspond au champ de categorie_id dans ma BDD
         $articles = $articleRepository->findBy(['category' => $id]);
         //je fais une requete de type select dans ma table category que je trie avec l'id qui est dans mon url
         $category = $categoryArticleRepository->find($id);
-        return $this->render('articles.html.twig', [
+        return $this->render('user/articles.html.twig', [
             //je mets le retour de mes requetes dans des variables twig
             'articles'=>$articles,
             'category'=>$category
@@ -82,8 +86,11 @@ class ArticleController extends AbstractController
                             ->setName($form->get('title')->getData());
                     //je pre-sauvegarde mon entité media
                     $entityManager->persist($media);
+                    $media->addArticle($article);
                 }
+
             }
+
             //je mets l'entité manager pour pre-sauvegarder mon entité Article
             $entityManager->persist($article);
             //j'envoi en base de donnée
@@ -98,7 +105,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
-        return $this->render('insert_update_article.html.twig', [
+        return $this->render('user/insert_update_article.html.twig', [
             'articles' => $form->createView()
         ]);
     }
@@ -124,7 +131,7 @@ class ArticleController extends AbstractController
             );
 
         }
-        return $this->render('insert_update_article.html.twig', [
+        return $this->render('user/insert_update_article.html.twig', [
             'articles' => $form->createView()
         ]);
 
@@ -133,15 +140,16 @@ class ArticleController extends AbstractController
     /**
      * @Route("/show/article/{id}", name="show_article")
      */
-
     public function showArticle($id,ArticleRepository $articleRepository)
     {
         //je recupere un article et l'ID  me permet de savoir quelle article precisement je dois recuperer
         $article=$articleRepository->find($id);
 
-        return $this->render('show_article.html.twig', [
-            'article' => $article
+        return $this->render('user/show_article.html.twig', [
+            'article' => $article,
+
         ]);
+
     }
     /**
      * @Route ("/delete/article/{id}", name="delete_article")

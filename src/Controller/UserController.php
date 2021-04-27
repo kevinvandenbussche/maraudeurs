@@ -18,7 +18,6 @@ class UserController extends AbstractController
     public function roleUser(UserRepository $repository)
     {
         $users = $repository->findAll();
-    dd($users);
 
         return $this->render('admin/role.html.twig', [
             'users' => $users
@@ -45,7 +44,23 @@ class UserController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Le User ' . $user->getEmail() . ' était bien modifié!');
+        $this->addFlash('success', 'L\'utilisateur ' . $user->getPseudonyme() . ' était bien modifié!');
+        return $this->redirectToRoute('role');
+    }
+
+    /**
+     * @Route("admin/user/delete/{id}", name = "delete_user")
+     */
+    public function deleteUser(UserRepository $repository,EntityManagerInterface $entityManager, $id)
+    {
+        $user = $repository->find($id);
+        $entityManager->remove($user);
+        $entityManager->flush();
+        $this->addFlash(
+            'success',
+            'l\'utilisateur a été bien supprimé'
+        );
+        //je renvoi l'utilisateur vers la page des categories
         return $this->redirectToRoute('role');
     }
 }

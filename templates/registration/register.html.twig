@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block header %}
+    {% include 'header/header.general.html.twig'  %}
+{% endblock %}
 {% block title %}Register{% endblock %}
 
 {% block content %}
@@ -17,10 +19,12 @@
         {{ form_label(registrationForm.email, 'Votre Email', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="input">
             {{ form_widget(registrationForm.email) }}
+            {{ form_errors(registrationForm.email)}}
         </div>
         {{ form_label(registrationForm.plainPassword, 'Votre Mot de Passe', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="input">
             {{ form_widget(registrationForm.plainPassword) }}
+            {{ form_errors(registrationForm.plainPassword) }}
         </div>
         <button type="submit" class="submit btn">Enregistrer</button>
     {{ form_end(registrationForm) }}
