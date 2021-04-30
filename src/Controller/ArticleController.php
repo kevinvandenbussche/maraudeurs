@@ -41,7 +41,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("insert/article", name="insert_article")
+     * @Route("/insert/article", name="insert_article")
      */
     public function insertArticle(Request $request, EntityManagerInterface $entityManager)
     {
@@ -81,16 +81,18 @@ class ArticleController extends AbstractController
                     }
                     //je creé une nouvelle entité média
                     $media = new Media();
+
                     //je met le nouveau nom du media dans le champs url
                     $media->setUrl($newfiles)
                             ->setName($form->get('title')->getData());
+                    //utilisation de la methode add article pour pouvoir stocker les données au bon endroit dans l'entité article
+                    $media->addArticle($article);
+                    //utilisation de la methode add article pour pouvoir stocker les id dans la table intermedaire
+                    $article->addMedia($media);
                     //je pre-sauvegarde mon entité media
                     $entityManager->persist($media);
-                    $media->addArticle($article);
                 }
-
             }
-
             //je mets l'entité manager pour pre-sauvegarder mon entité Article
             $entityManager->persist($article);
             //j'envoi en base de donnée
@@ -140,15 +142,18 @@ class ArticleController extends AbstractController
     /**
      * @Route("/show/article/{id}", name="show_article")
      */
-    public function showArticle($id,ArticleRepository $articleRepository)
+    public function showArticle($id,ArticleRepository $articleRepository,
+                                EntityManagerInterface $entityManager,
+                                Request $request,
+                                MediaRepository $mediaResository)
     {
         //je recupere un article et l'ID  me permet de savoir quelle article precisement je dois recuperer
-        $article=$articleRepository->find($id);
+        $articles = $articleRepository->findAll();
 
         return $this->render('user/show_article.html.twig', [
-            'article' => $article,
-
+            'articles' => $articles
         ]);
+
 
     }
     /**

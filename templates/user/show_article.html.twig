@@ -4,15 +4,18 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.articleContent }}</p>
-
-    <p></p>
-    <div class="linkCrudArticle">
-        <a href="{{ path('update_article', {'id' : article.id}) }}">modifier l'article</a>
-        {% if is_granted ('ROLE_ADMIN') %}
-        <div class="border"></div>
-        <a href="{{ path('delete_article', {'id' : article.id}) }}">supprimer l'article</a>
-        {% endif %}
+    {% for article  in articles %}
+        <h1>{{ article.title }}</h1>
+        <p class="content">{{ article.articleContent }}</p>
+        {% for media in article.media %}
+            <a href="{{ asset('{{ media.url }}') }}"></a>
+        {% endfor %}
+        <div class="linkCrudArticle">
+            <a href="{{ path('update_article', {'id' : article.id}) }}">modifier l'article</a>
+            {% if is_granted ('ROLE_ADMIN') %}
+            <div class="border"></div>
+            <a href="{{ path('delete_article', {'id' : article.id}) }}">supprimer l'article</a>
+            {% endif %}
+    {% endfor %}
     </div>
 {% endblock %}

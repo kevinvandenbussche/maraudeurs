@@ -7,11 +7,15 @@
 {% block title %}Log in!{% endblock %}
 
 {% block content %}
+    {% if app.user %}
+        <div class="unlog">
+            <span>Vous êtes connécté en tant que {{ app.user.pseudonyme }}</span> <a href="{{ path('app_logout') }}">Deconnexion</a>
+        </div>
+    {% endif %}
+
 <form method="post">
     <a href="{{ path('app_register') }}"><h1>Créer un Compte</h1></a>
-
-    <h1>Veuillez remplir</h1>
-
+    <h1>Pour Vous Connecter</h1>
     <h2><label for="inputEmail">Email</label></h2>
     <div class="input">
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail"  required autofocus>
@@ -20,7 +24,6 @@
     <div class="input">
     <input type="password" name="password" id="inputPassword"  required>
     </div>
-
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
@@ -36,17 +39,15 @@
 {#        </div>#}
 
 
-    <button class="submit" type="submit">
+    <button class="effectButton" type="submit">
         Connexion
     </button>
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
-        </div>
-    {% endif %}
+
 </form>
+
+
 {% endblock %}

@@ -34,7 +34,7 @@ class ArticleType extends AbstractType
             ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'FormEvents::PRE_SET_DATA'
+                'choice_label' => 'pseudonyme'
                 
             ])
             //j'indique a symfony que mon l'objet qu'il recoit est un tableau
@@ -64,9 +64,7 @@ class ArticleType extends AbstractType
                     ]),
                 ]
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer'
-            ])
+
         ;
     }
 

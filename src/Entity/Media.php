@@ -124,7 +124,7 @@ class Media
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->addMediaArticle($this);
+            $article->addMedia($this);
         }
 
         return $this;
@@ -133,7 +133,7 @@ class Media
     public function removeArticle(Article $article): self
     {
         if ($this->articles->removeElement($article)) {
-            $article->removeMediaArticle($this);
+            $article->removeMedia($this);
         }
 
         return $this;

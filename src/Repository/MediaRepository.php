@@ -25,7 +25,7 @@ class MediaRepository extends ServiceEntityRepository
 //    public function findByExampleField($value)
 //    {
 //        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
+//            ->andWhere('m.url = :val')
 //            ->setParameter('val', $value)
 //            ->orderBy('m.id', 'ASC')
 //            ->setMaxResults(10)

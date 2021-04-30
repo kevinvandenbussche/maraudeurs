@@ -63,11 +63,11 @@ class Article
     /**
      * @ORM\ManyToMany(targetEntity=media::class, inversedBy="media", cascade="persist")
      */
-    private $mediaArticle;
+    private $media;
 
     public function __construct()
     {
-        $this->mediaArticle = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
 
@@ -149,23 +149,23 @@ class Article
     /**
      * @return Collection|media[]
      */
-    public function getMediaArticle(): Collection
+    public function getMedia(): Collection
     {
-        return $this->mediaArticle;
+        return $this->media;
     }
 
-    public function addMediaArticle(media $mediaArticle): self
+    public function addMedia(media $media): self
     {
-        if (!$this->mediaArticle->contains($mediaArticle)) {
-            $this->mediaArticle[] = $mediaArticle;
+        if (!$this->media->contains($media)) {
+            $this->media[] = $media;
         }
 
         return $this;
     }
 
-    public function removeMediaArticle(media $mediaArticle): self
+    public function removeMedia(media $media): self
     {
-        $this->mediaArticle->removeElement($mediaArticle);
+        $this->media->removeElement($media);
 
         return $this;
     }

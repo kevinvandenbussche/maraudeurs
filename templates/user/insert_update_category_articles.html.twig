@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block header %}
+    {% include 'header/header.general.html.twig' %}
+{% endblock %}
 {% block content %}
     <h1 class="titleAdmin">{{ title }} de Categorie</h1>
     <h2>nom de la categorie</h2>
@@ -7,9 +9,8 @@
     <div class="input">
         {{ form_widget(categories.name) }}
     </div>
-    <div class="submit">
-    {{ form_widget(categories.submit) }}">
-    </div>
+    <button type="submit" class="effectButtonSend">Envoyer
+    </button>
     {{ form_end(categories) }}
 
 {% endblock %}

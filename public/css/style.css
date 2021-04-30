@@ -30,6 +30,8 @@ span{
     text-align: center;
     display: block;
 }
+
+
 footer span{
     font-size: 0.5em;
 
@@ -49,11 +51,14 @@ h2{
 
 .colorBlack{
     background-color: black;
-    padding: 10px 20px;
+    padding: 10px;
+
 }
+
 i{
     padding: 0 5px;
 }
+
 p,
 a,
 span {
@@ -72,6 +77,14 @@ ul {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    padding-inline-start: 0px;
+    padding: 0 10px;
+}
+
+.listHeader{
+    display: flex;
+    justify-content: space-between;
+
 }
 
 li {
@@ -220,6 +233,9 @@ body {
     justify-content: space-between;
 }
 
+.lore{
+    height: 5vh;
+}
 
 .headerPrincipal {
     height: 70vh;
@@ -228,10 +244,11 @@ body {
 
 .headerUser{
     padding: 0 20px;
+
 }
 
-.lore{
-    height: 5vh;
+.userHeader{
+    width: 50%;
 }
 
 header>div{
@@ -243,13 +260,18 @@ header>img{
     width:30%;
 }
 
-header div a{
-    width:10%;
+header a {
     font-size: 1em;
+}
+.linkDiscord{
+    width: 100%;
+}
+.start{
+    text-align: left;
 }
 
 a img{
-    width: 30%;
+    width: 20%;
 }
 
 .photoPrincipal{
@@ -330,10 +352,27 @@ footer a {
 .input{
     text-align: center;
 }
+
+input{
+    color:white
+}
+
 .submit{
     padding-top: 20px;
     text-align: center;
     width: 100%;
+
+}
+
+.submitLogin{
+    margin-left: 45%;
+    margin-top: 20px;
+}
+
+.unlog{
+    text-align: center;
+    margin-bottom: 20px;
+
 }
 
 input, select, textarea  {
@@ -347,9 +386,10 @@ label{
 }
 
 button{
-    width: 10%;
     margin: 0 auto;
 }
+
+
 /*****************************************gestion des fichiers dynamiques ********************************************/
 .titleAdmin{
     padding-top: 50px;
@@ -425,14 +465,82 @@ h3{
     font-size: 10em;
 }
 
+/************************************BOUTON****************************************/
+.effectButton{
+    margin-top: 10px;
+    border-color: #3498db;
+    color: #fff;
+    box-shadow: 0 0 40px 40px rgba(13, 46, 66, 0.8) inset, 0 0 0 0 #3498db;
+    transition: all 150ms ease-in-out;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 0.6em;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1;
+    padding: 1.2em 1.4em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Electrolize", sans-serif;;
+    font-weight: 700;
+}
 
+.effectButton:hover {
+    box-shadow: 0 0 10px rgba(13, 46, 66, 0.8) inset, 0 0 10px 4px #3498db;
+}
 
+.effectButtonSend{
+    margin-top: 10px;
+    border-color: #3498db;
+    color: #fff;
+    box-shadow: 0 0 40px 40px rgba(13, 46, 66, 0.8) inset, 0 0 0 0 #3498db;
+    transition: all 150ms ease-in-out;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 0.6em;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1;
+    padding: 1.2em 2.1em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Electrolize", sans-serif;
+    font-weight: 700;
+}
+
+.effectButtonSend:hover {
+    box-shadow: 0 0 10px rgba(13, 46, 66, 0.8) inset, 0 0 10px 4px #3498db;
+}
+
+.otherFiles{
+    width: 60%;
+    font-family: "Electrolize", sans-serif;
+    margin-top: 5px;
+}
+
+.content{
+    text-align: center;
+}
 
 @media screen and (min-width:320px) and (max-width:850px){
     /* FAIRE DROP DOWN POUR TELEPHONE */
-    header{
-        height: 70vh;
-    }
+
     /* pour faire disparaitre la photo de gauche */
     .none{
         display: none;
@@ -490,6 +598,11 @@ h3{
         height:0;
         opacity:0;
         transition: all ease .8s;
+    }
+    #effetNo{
+        height: auto;
+        opacity: 1;
+
     }
     /* pb de selection de mes div avec la classe effet qui me decale le pointeur et qui m empeche de selectionner la bonne section, du coup je l'enleve de toute mes div */
     .effet *{
@@ -609,7 +722,7 @@ h3{
 
     }
     #menu.show-menu{
-        transform:translateX(-51px);
+        transform:translateX(-25px);
     }
 
     .main{

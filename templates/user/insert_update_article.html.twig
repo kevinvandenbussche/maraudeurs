@@ -15,19 +15,19 @@
         <div class="input">
             {{ form_widget(articles.category) }}
         </div>
-{#        {{ form_label(articles.user, 'Utilisateur', {'attr': {'class': 'titleLabel'}}) }}#}
-{#        <div class="input">#}
-{#            {{ form_widget(articles.user) }}#}
-{#        </div>#}
+        {{ form_label(articles.user, 'Utilisateur', {'attr': {'class': 'titleLabel'}}) }}
+        <div class="input">
+            {{ form_widget(articles.user) }}
+        </div>
         {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
-        <div id="media" class="input">
-            {{ form_widget(articles.media) }}
+        <div class="flex">
+            <div id="media" class="input">
+                {{ form_widget(articles.media) }}
+                <button onclick="test()" class="otherFiles">autre fichier</button>
+            </div>
         </div>
 
-    <button onclick="test()">autre fichier</button>
-        <div class="submit">
-            {{ form_widget(articles.submit) }}
-        </div>
+        <button type="submit" class="effectButtonSend">Envoyer</button>
     {{ form_end(articles) }}
 
 
