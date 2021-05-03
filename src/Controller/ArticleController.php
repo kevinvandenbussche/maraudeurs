@@ -148,10 +148,10 @@ class ArticleController extends AbstractController
                                 MediaRepository $mediaResository)
     {
         //je recupere un article et l'ID  me permet de savoir quelle article precisement je dois recuperer
-        $articles = $articleRepository->findAll();
+        $article = $articleRepository->find($id);
 
         return $this->render('user/show_article.html.twig', [
-            'articles' => $articles
+            'article' => $article
         ]);
 
 

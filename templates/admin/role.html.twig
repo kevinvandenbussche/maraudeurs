@@ -8,15 +8,15 @@
         <span>{{ user.pseudonyme }}</span>
         <span>{{ user.roles|json_encode }}</span>
         <form method="post" action="{{ path('roleUpdate') }}">
-            <input type="hidden" name="id" value="{{ user.id }}">
+            <input type="hidden"  name="id" value="{{ user.id }}">
             <select name="role" id="role">
                 <option value="">Choisir un role</option>
                 <option value="admin">administrateur</option>
                 <option value="user">utilisateur</option>
                 <option value="waiting">en attente</option>
             </select>
-            <input type="submit">
-            <a href="{{ path('delete_user', {'id' : user.id}) }}">supprimer l'utilsateur</a>
+            <input class="inputRole" type="submit">
+            <a class="linkDeleteUser" href="{{ path('delete_user', {'id' : user.id}) }}">supprimer l'utilsateur</a>
         </form>
     {% endfor %}
 
