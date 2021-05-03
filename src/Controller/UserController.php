@@ -36,9 +36,9 @@ class UserController extends AbstractController
             $role = array('ROLE_ADMIN');
         } elseif ($request->request->get('role') === "user") {
             $role = array('ROLE_USER');
-        } elseif ($request->request->get('role') === "officer") {
-            $role = array('ROLE_OFFICER');
-        }
+        } elseif ($request->request->get('role') === "waiting") {
+            $role = array('ROLE_WAITING');}
+
 
         $user->setRoles($role);
         $entityManager->persist($user);

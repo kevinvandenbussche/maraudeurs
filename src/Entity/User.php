@@ -60,9 +60,6 @@ class User implements UserInterface
      *      maxMessage=" votre mot de passe doit faire plus de 20 caractères"
      * )
      *
-     *  @Assert\NotBlank (
-     *     message="ce champ ne peut pas être vide"
-     * )
      */
     private $password;
 
