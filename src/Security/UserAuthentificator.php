@@ -96,7 +96,7 @@ class UserAuthentificator extends AbstractFormLoginAuthenticator implements Pass
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('display_categories'));
+        return new RedirectResponse($this->urlGenerator->generate('home_page'));
 
     }
 

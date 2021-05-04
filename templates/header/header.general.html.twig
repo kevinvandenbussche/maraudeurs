@@ -6,9 +6,8 @@
                     <div class="taillePhotoDiscord"><img class="resp" src="{{ asset ('img/discord.png') }}" alt="photo discord"></div>
                 </a>
             </li>
-
-                {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('role') }}">Gestion Des Utilisateurs</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('role') }}">Gestion Des Utilisateurs</a></li>
             {% endif %}
             {% if app.user %}
                 <li><a href="{{ path('app_login') }}">{{ app.user.pseudonyme }}</a></li>

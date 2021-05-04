@@ -25,6 +25,7 @@ class CategoriesArticlesController extends AbstractController
     //j'utilise l'auto wire qui me permet d'utiliser le repository creer par doctrine qui contient toutes les requetes
     public function displayCategories(CategoryArticleRepository $categoryArticleRepository)
     {
+
         //je recupere toutes les données avec findAll (requete de type select) que je mets dans une variable
         $categories = $categoryArticleRepository->findAll();
         //je renvoie le tout a ma vue avec la methode render qui est hériter d'AbstractController
