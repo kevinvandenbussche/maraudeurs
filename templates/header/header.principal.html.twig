@@ -18,18 +18,29 @@
             {% endif %}
         </ul>
     </div>
-    <div class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active d-flex justify-content-center" data-bs-interval="2">
-                <img class="imageCarroussel d-block w-100 resp" src="{{ asset ('img/Blason_phoenix.png') }}" alt="">
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset ('img/Blason_cerbere.png') }}" class="imageCarroussel resp d-block w-100" alt="">
+                </div>
             </div>
-            <div class="carousel-item d-flex justify-content-center" data-bs-interval="2">
-                <img class="imageCarroussel d-block w-100 resp" src="{{ asset ('img/Blason_dragon.png') }}" alt="">
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset ('img/Blason_phoenix.png') }}" class="imageCarroussel resp d-block w-100" alt="">
+                </div>
             </div>
-            <div class="carousel-item d-flex justify-content-center" data-bs-interval="2">
-                <img class="imageCarroussel d-block w-100 resp" src="{{ asset ('img/Blason_cerbere.png') }}" alt="">
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset ('img/Blason_dragon.png') }}" class="imageCarroussel resp d-block w-100" alt="">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset ('img/Blason_griffon.png') }}" class="imageCarroussel resp d-block w-100" alt="">
+                </div>
             </div>
         </div>
-
-    </div>
 </header>
+
+

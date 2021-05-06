@@ -8,8 +8,9 @@
     <div class="containerElement">
         {% for article in articles %}
             <div class="menuCrud">
-                <a href="{{ path ('show_article' , {'id':article.id}) }}"><h2>{{ article.title }}</h2></a>
-                <p class="content">{{ article.articleContent }}</p>
+                <a href="{{ path ('show_article' , {'id':article.id}) }}">
+                    <h2>{{ article.title }}</h2>
+                </a>
                 <span>{{ article.date | date("d/m/Y") }}</span>
                 <div class="linkCrud">
                     <a href="{{ path('update_article', {'id' : article.id}) }}">modifier l'article</a>

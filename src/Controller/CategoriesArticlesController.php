@@ -8,6 +8,7 @@ use App\Entity\CategoryArticle;
 use App\Form\CategoryType;
 use App\Repository\CategoryArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -103,8 +104,10 @@ class CategoriesArticlesController extends AbstractController
             'title' => $title
         ]);
     }
+
     //je creer une route avec une wild card
     /**
+     * @IsGranted ("ROLE_ADMIN")
      * @Route ("/delete/category/{id}", name="delete_category")
      */
     public function deleteCategory($id, CategoryArticleRepository $categoryArticleRepository, EntityManagerInterface $entityManager)

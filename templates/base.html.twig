@@ -25,9 +25,9 @@
                     <li class="scale"><a href="{{ path ('home_page') }}">ACCUEIL</a></li>
 
                     <li class="scale"><a href="{{ path ('lore_page') }}">LORE</a></li>
-
+                    {% if is_granted ('ROLE_USER') %}
                     <li class="scale"><a href="{{ path('display_categories') }}">DOCUMENTATION</a></li>
-
+                    {% endif %}
                     <li class="scale"><a href="https://robertsspaceindustries.com/" target="_blank">SITE RSI</a></li>
                 </ul>
             </div>
@@ -37,7 +37,9 @@
             <ul class="burger">
                 <li class="liBurger"><a href="{{ path ('home_page') }}">ACCUEIL</a></li>
                 <li class="liBurger"><a href="{{ path ('lore_page') }}">LORE</a></li>
+                {% if is_granted ('ROLE_USER') %}
                 <li class="liBurger"><a href="{{ path('display_categories') }}">DOCUMENTATION</a></li>
+                {% endif %}
                 <li class="liBurger"><a href="https://robertsspaceindustries.com/" target="_blank">SITE RSI</a></li>
             </ul>
         </nav>

@@ -4,16 +4,21 @@
 {% endblock %}
 {% block content %}
     <h1>Nos Membres</h1>
+    {% set role = "" %}
     {% for user in users %}
         <span>{{ user.pseudonyme }}</span>
-        <span>{{ user.roles|json_encode }}</span>
+        {% if "ROLE_ADMIN" in user.roles %}
+        {% set role = "Administrateur" %}
+        {% elseif "ROLE_USER" in user.roles %}
+        {% set role = "utilisateur" %}
+        {% endif %}
+        <span> {{ role }}</span>
         <form method="post" action="{{ path('roleUpdate') }}">
             <input type="hidden"  name="id" value="{{ user.id }}">
             <select name="role" id="role">
                 <option value="">Choisir un role</option>
                 <option value="admin">administrateur</option>
                 <option value="user">utilisateur</option>
-                <option value="waiting">en attente</option>
             </select>
             <input class="inputRole" type="submit">
             <a class="linkDeleteUser" href="{{ path('delete_user', {'id' : user.id}) }}">supprimer l'utilsateur</a>

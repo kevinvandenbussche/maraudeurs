@@ -2,6 +2,9 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
+    role_hierarchy:
+        ROLE_ADMIN: [ ROLE_ADMIN, ROLE_USER ]
+
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -37,5 +40,5 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/user, roles: ROLE_USER }
-         - { path: ^/wating, roles: ROLE_WATING}
+
 

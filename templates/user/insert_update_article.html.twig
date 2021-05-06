@@ -11,13 +11,9 @@
         <div class="input">
             {{ form_widget(articles.articleContent) }}
         </div>
-        {{ form_label(articles.category, 'Categorie', {'label_attr': {'class': 'titleLabel'}}) }}
+        {{ form_label(articles.category, 'Categorie', {'label_attr': {'class': 'titleLabel marginZero '}}) }}
         <div class="input">
             {{ form_widget(articles.category) }}
-        </div>
-        {{ form_label(articles.user, 'Utilisateur', {'attr': {'class': 'titleLabel'}}) }}
-        <div class="input">
-            {{ form_widget(articles.user) }}
         </div>
         {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="flex">

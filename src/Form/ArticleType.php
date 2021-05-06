@@ -32,18 +32,13 @@ class ArticleType extends AbstractType
                 //et qui correspond au champ name de mon entité
                 'choice_label'=> 'name'
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'pseudonyme'
-                
-            ])
             //j'indique a symfony que mon l'objet qu'il recoit est un tableau
             ->add('media', CollectionType::class, [
                 //je lui indique se qu'il va recevoir comme type de valeur
                 'entry_type' => MediaType::class,
 
             ])
-            ->add('media', MediaType::class)
+            ->add('media', MediaType::class,)
             ->add('media', FileType::class,[
                 'label' => 'Joindre votre(ou vos) document(s)',
                 'multiple' => true,

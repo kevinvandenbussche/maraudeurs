@@ -61,7 +61,7 @@ class Article
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Media::class, inversedBy="media", cascade="persist")
+     * @ORM\ManyToMany(targetEntity=media::class, inversedBy="media", cascade="persist")
      */
     private $media;
 

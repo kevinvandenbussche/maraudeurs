@@ -65,6 +65,9 @@ span {
     font-family: "Electrolize", sans-serif;
     color: #ffffff;
 }
+.alignLink{
+    text-align: center;
+}
 
 .flex {
     display: flex;
@@ -376,11 +379,17 @@ input{
 
 }
 
-input, select, textarea  {
+input,
+select,
+textarea  {
     width: 60%;
     margin: 0 auto;
     font-family: "Electrolize", sans-serif;
 
+}
+
+.marginZero{
+    margin: 0;
 }
 label{
     font-family: "Electrolize", sans-serif;
@@ -539,9 +548,9 @@ h3{
     text-align: center;
 }
 
-select{
-    margin-left: 20%;
-}
+/*select{*/
+/*    margin-left: 20%;*/
+/*}*/
 
 .inputRole{
     margin-left: 20%;

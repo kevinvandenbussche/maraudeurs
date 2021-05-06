@@ -6,9 +6,9 @@
 {% block content %}
         <h1>{{ article.title }}</h1>
         <p class="content">{{ article.articleContent }}</p>
-{#        {% for media in article.media %}#}
-{#            <a href="{{ asset('{{ media.url }}') }}"></a>#}
-{#        {% endfor %}#}
+        {% for media in article.media %}
+            <a class="alignLink" href="{{ asset('files/') }}{{ media.url }}" target="_blank">Cliquez ici pour avoir accès à la documentation</a>
+        {% endfor %}
         <div class="linkCrudArticle">
             <a href="{{ path('update_article', {'id' : article.id}) }}">modifier l'article</a>
             {% if is_granted ('ROLE_ADMIN') %}

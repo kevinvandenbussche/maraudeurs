@@ -40,15 +40,11 @@ class Media
      */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="article")
-     */
-    private $articles;
 
     public function __construct()
     {
         $this->article= new ArrayCollection();
-        $this->articles = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -113,17 +109,14 @@ class Media
     }
 
     /**
-     * @return Collection|Article[]
+     * @param Article $article
+     * @return Media
      */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
 
     public function addArticle(Article $article): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
             $article->addMedia($this);
         }
 
@@ -132,7 +125,7 @@ class Media
 
     public function removeArticle(Article $article): self
     {
-        if ($this->articles->removeElement($article)) {
+        if ($this->article->removeElement($article)) {
             $article->removeMedia($this);
         }
 

@@ -14,7 +14,7 @@ class CategoryArticle
     //(ici plusieurs articles peuvent etre dans chaque categories)
     //j'indique a doctrine ou aller chercher la foreign key (ici dans la table article)
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category_article")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="article")
      */
     private $article;
 
