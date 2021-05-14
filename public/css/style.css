@@ -121,12 +121,25 @@ a:hover {
     text-decoration: none;
 }
 
-p {
+p{
     padding: 30px;
 }
 
+.pLore{
+    padding: 10px;
+}
+
+.pLore:hover{
+    transition: none;
+    background-color: rgba(0,0,0, 0);
+}
 
 p:hover {
+    transition: all ease-in-out 0.6s;
+    background-color: #00e5ff15;
+}
+
+#effetNo:hover{
     transition: all ease-in-out 0.6s;
     background-color: #00e5ff15;
 }
@@ -244,6 +257,12 @@ body {
     height: 70vh;
 }
 
+.nameUser{
+    margin-top: 20px;
+    margin-bottom: 2px;
+    padding-bottom: 1px;
+}
+
 
 .headerUser{
     padding: 0 20px;
@@ -271,6 +290,10 @@ header a {
 }
 .start{
     text-align: left;
+}
+
+.selectRole{
+    margin-left: 20%;
 }
 
 a img{
@@ -627,6 +650,8 @@ h3{
         opacity: 1;
 
     }
+
+
     /* pb de selection de mes div avec la classe effet qui me decale le pointeur et qui m empeche de selectionner la bonne section, du coup je l'enleve de toute mes div */
     .effet *{
         display: none;

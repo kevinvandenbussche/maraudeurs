@@ -15,13 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route ("/user")
- *
+ * @IsGranted ("ROLE_USER")
  */
 //je creer une class a laquelle je fais heriter la class de symfony AbstractController
 class CategoriesArticlesController extends AbstractController
 {   //je creer une route qui me permet d'utiliser ma methode et je lui donne un nom
     /**
      * @Route ("/categories", name="display_categories")
+
      */
     //j'utilise l'auto wire qui me permet d'utiliser le repository creer par doctrine qui contient toutes les requetes
     public function displayCategories(CategoryArticleRepository $categoryArticleRepository)
@@ -43,8 +44,6 @@ class CategoriesArticlesController extends AbstractController
     //j'instancie ma méthode avec des services de symfony
     public function insertCategory(Request $request, EntityManagerInterface $entityManager)
     {
-        $title = 'Création';
-
         //je creer un nouvelle entité que je mets dans une variable
         $category = new CategoryArticle();
         //j'utilise une methode d'AbstractController qui me permet de créer un formulaire avec les champs de mon
@@ -70,8 +69,7 @@ class CategoriesArticlesController extends AbstractController
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
         return $this->render('user/insert_update_category_articles.html.twig', [
-            'categories' => $form->createView(),
-            'title' => $title
+            'categories' => $form->createView()
             ]);
     }
     // je creer une route avec en parametre une wild card qui equivaut a l'id de la category souhaitez
@@ -104,7 +102,6 @@ class CategoriesArticlesController extends AbstractController
             'title' => $title
         ]);
     }
-
     //je creer une route avec une wild card
     /**
      * @IsGranted ("ROLE_ADMIN")
@@ -123,7 +120,7 @@ class CategoriesArticlesController extends AbstractController
             'la categorie a été supprimé'
         );
         //je renvoi l'utilisateur vers la page des categories
-        return $this->redirectToRoute('user/display_categories');
+        return $this->redirectToRoute('display_categories');
 
     }
 

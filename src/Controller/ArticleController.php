@@ -8,7 +8,6 @@ use App\Entity\Media;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryArticleRepository;;
-
 use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route ("/user")
- *
+ * @IsGranted ("ROLE_USER")
  */
 class ArticleController extends AbstractController
 {
@@ -29,18 +28,17 @@ class ArticleController extends AbstractController
      */
     public function displayArticles( ArticleRepository $articleRepository, $id, CategoryArticleRepository $categoryArticleRepository)
     {
-        //je fais une requête de type select avec doctrine dans ma table article qui me permet de recuperer les articles et je les tries avec
-        //l'id que j'ai dans mon URL qui correspond au champ de categorie_id dans ma BDD
-        $articles = $articleRepository->findBy(['category' => $id]);
         //je fais une requete de type select dans ma table category que je trie avec l'id qui est dans mon url
         $category = $categoryArticleRepository->find($id);
+        //je fais une requête de type select avec doctrine dans ma table article qui me permet de recuperer les articles et je les tries avec
+        //l'id que j'ai dans mon URL qui correspond au champ de categorie_id dans ma BDD
+        $articles = $articleRepository->findBy(['categoryArticle' => $id]);
         return $this->render('user/articles.html.twig', [
             //je mets le retour de mes requetes dans des variables twig
             'articles'=>$articles,
             'category'=>$category
         ]);
     }
-
     /**
      * @Route("/insert/article", name="insert_article")
      */
@@ -109,7 +107,6 @@ class ArticleController extends AbstractController
             'articles' => $form->createView()
         ]);
     }
-
     /**
      * @Route ("/update/article/{id}", name="update_article")
      */
@@ -163,7 +160,6 @@ class ArticleController extends AbstractController
         ]);
 
     }
-
     /**
      * @Route("/show/article/{id}", name="show_article")
      */

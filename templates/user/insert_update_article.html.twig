@@ -11,15 +11,16 @@
         <div class="input">
             {{ form_widget(articles.articleContent) }}
         </div>
-        {{ form_label(articles.category, 'Categorie', {'label_attr': {'class': 'titleLabel marginZero '}}) }}
+        {{ form_label(articles.categoryArticle, 'Categorie', {'label_attr': {'class': 'titleLabel marginZero '}}) }}
         <div class="input">
-            {{ form_widget(articles.category) }}
+            {{ form_widget(articles.categoryArticle) }}
         </div>
         {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="flex">
             <div id="media" class="input">
                 {{ form_widget(articles.media) }}
-                <button onclick="test()" class="otherFiles">autre fichier</button>
+                {{ form_errors(articles.media) }}
+{#                <button onclick="upload()" class="otherFiles">autre fichier</button>#}
             </div>
         </div>
 

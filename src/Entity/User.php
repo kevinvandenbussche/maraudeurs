@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface
 {
     /**
-     * @ORM\OneToMany (targetEntity="App\Entity\Media", mappedBy="media")
+     * @ORM\OneToMany (targetEntity="App\Entity\Media", mappedBy="user")
      */
     private $media;
 
@@ -103,16 +103,17 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
+    public function getRoles()
     {
+
         $roles = $this->roles;
-        $roles[] = '';
+        $roles[] = 'ROLE_WAITING';
 
 
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
 

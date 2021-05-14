@@ -18,9 +18,9 @@ class Media
      */
     private $user;
 
-    //j'indique a doctrine que plusieurs media peuvent etre dans articles
+    //j'indique a doctrine que plusieurs media peuvent etre dans article
     /**
-     * @ORM\ManyToMany (targetEntity="App\Entity\Article", mappedBy="media")
+     * @ORM\ManyToMany (targetEntity="App\Entity\Article", inversedBy="media")
      */
     private $article;
     /**

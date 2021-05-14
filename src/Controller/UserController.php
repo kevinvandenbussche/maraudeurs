@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,7 @@ class UserController extends AbstractController
 {
     /**
      * @Route("admin/user", name="role")
+     * @IsGranted ("ROLE_ADMIN")
      */
     public function roleUser(UserRepository $repository)
     {
@@ -27,17 +29,18 @@ class UserController extends AbstractController
 
     /**
     * @Route("admin/user/update", name = "roleUpdate")
+     * @IsGranted ("ROLE_ADMIN")
     */
     public function roleUpdate(UserRepository $repository, Request $request, EntityManagerInterface $entityManager)
     {
         $user = $repository->findOneBy(['id' => $request->request->get('id')]);
-
-        if ($request->request->get('role') === "admin") {
-            $role = array('ROLE_ADMIN');
+        $role = array('ROLE_WAITING');
+        if ($request->request->get('role') === "waiting") {
+            $role = array('ROLE_WAITING');
         } elseif ($request->request->get('role') === "user") {
             $role = array('ROLE_USER');
-        } elseif ($request->request->get('role') === "waiting") {
-            $role = array('ROLE_WAITING');}
+        } elseif ($request->request->get('role') === "admin") {
+            $role = array('ROLE_ADMIN');}
 
 
         $user->setRoles($role);
@@ -50,6 +53,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("admin/user/delete/{id}", name = "delete_user")
+     * * @IsGranted ("ROLE_ADMIN")
      */
     public function deleteUser(UserRepository $repository,EntityManagerInterface $entityManager, $id)
     {

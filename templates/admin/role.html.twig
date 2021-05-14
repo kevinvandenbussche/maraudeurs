@@ -6,16 +6,18 @@
     <h1>Nos Membres</h1>
     {% set role = "" %}
     {% for user in users %}
-        <span>{{ user.pseudonyme }}</span>
+        <h1 class="nameUser">{{ user.pseudonyme }}</h1>
         {% if "ROLE_ADMIN" in user.roles %}
         {% set role = "Administrateur" %}
         {% elseif "ROLE_USER" in user.roles %}
         {% set role = "utilisateur" %}
+        {% elseif "ROLE_WAITING" in user.roles %}
+        {% set role = "en attente" %}
         {% endif %}
         <span> {{ role }}</span>
         <form method="post" action="{{ path('roleUpdate') }}">
             <input type="hidden"  name="id" value="{{ user.id }}">
-            <select name="role" id="role">
+            <select class="selectRole" name="role" id="role">
                 <option value="">Choisir un role</option>
                 <option value="admin">administrateur</option>
                 <option value="user">utilisateur</option>

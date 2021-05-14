@@ -18,7 +18,7 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CategoryArticle", inversedBy="article")
      */
-    private $category;
+    private $categoryArticle;
 
     /**
      * @ORM\ManyToOne (targetEntity="App\Entity\User", inversedBy="article")
@@ -61,7 +61,7 @@ class Article
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity=media::class, inversedBy="media", cascade="persist")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Media", mappedBy="article", cascade="persist")
      */
     private $media;
 
@@ -116,17 +116,17 @@ class Article
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getCategoryArticle()
     {
-        return $this->category;
+        return $this->categoryArticle;
     }
 
     /**
-     * @param mixed $category
+     * @param mixed $categoryArticle
      */
-    public function setCategory($category): void
+    public function setCategoryArticle($categoryArticle): void
     {
-        $this->category = $category;
+        $this->categoryArticle = $categoryArticle;
     }
 
 

@@ -26,7 +26,7 @@ class ArticleType extends AbstractType
             ->add('articleContent')
             ->add('title')
             //je precise a symfony que ce champ est une entité
-            ->add('category', EntityType::class,[
+            ->add('categoryArticle', EntityType::class,[
                 //je lui indique que c'est l'entité categoryArticle
                 'class' => CategoryArticle::class,
                 //et qui correspond au champ name de mon entité

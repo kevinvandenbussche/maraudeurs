@@ -14,7 +14,7 @@ class CategoryArticle
     //(ici plusieurs articles peuvent etre dans chaque categories)
     //j'indique a doctrine ou aller chercher la foreign key (ici dans la table article)
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="article")
+     * @ORM\OneToMany (targetEntity="App\Entity\Article", mappedBy="categoryArticle")
      */
     private $article;
 
@@ -30,23 +30,19 @@ class CategoryArticle
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    //dans le oneToMany je creer un array collection qui evitera d'ecraser les données de la table de article
-    public function __construct()
-    {
-        $this->article = new ArrayCollection();
-    }
 
-    public function getId(): ?int
+
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name)
     {
         $this->name = $name;
 
@@ -64,7 +60,7 @@ class CategoryArticle
     /**
      * @param mixed $article
      */
-    public function setArticle($article): void
+    public function setArticle($article)
     {
         $this->article = $article;
     }
