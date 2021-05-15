@@ -17,7 +17,7 @@ body{
 }
 
 .imageCarroussel{
-    width: 450px!important;
+    width: 30%!important;
 }
 /* pour faire disparaitre les photos qui encadre chaque titre en html en version dekstop */
 .phone{
@@ -146,7 +146,7 @@ p:hover {
 
 h1 {
     width: 50%;
-    margin: auto;
+    margin: 0 auto;
     text-align: center;
     padding-bottom: 5%;
     display: block;
@@ -424,10 +424,6 @@ button{
 
 
 /*****************************************gestion des fichiers dynamiques ********************************************/
-.titleAdmin{
-    padding-top: 50px;
-}
-
 .titleCrud{
     text-align: center;
 }
@@ -580,8 +576,10 @@ h3{
 }
 
 .linkDeleteUser{
+    width: 40%;
+    margin: 0 auto;
     font-size: 1.5em;
-    margin-left: 42%;
+    /*margin-left: 42%;*/
 }
 
 @media screen and (min-width:320px) and (max-width:850px){

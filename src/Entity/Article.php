@@ -70,8 +70,6 @@ class Article
         $this->media = new ArrayCollection();
     }
 
-
-
     public function getId(): ?int
     {
         return $this->id;

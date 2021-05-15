@@ -38,7 +38,7 @@ class ArticleType extends AbstractType
                 'entry_type' => MediaType::class,
 
             ])
-            ->add('media', MediaType::class,)
+//            ->add('media', MediaType::class)
             ->add('media', FileType::class,[
                 'label' => 'Joindre votre(ou vos) document(s)',
                 'multiple' => true,
