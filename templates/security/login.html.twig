@@ -7,14 +7,12 @@
 {% block title %}Log in!{% endblock %}
 
 {% block content %}
-    {% if app.user %}
+    {% if is_granted('ROLE_USER') %}
         <div class="unlog">
             <span>Vous êtes connécté en tant que {{ app.user.pseudonyme }}</span> <a href="{{ path('app_logout') }}">Deconnexion</a>
         </div>
-    {% endif %}
-
+    {% else %}
 <form method="post">
-    <a href="{{ path('app_register') }}"><h1>Créer un Compte</h1></a>
     <h1>Pour Vous Connecter</h1>
     <h2><label for="inputEmail">Email</label></h2>
     <div class="input">
@@ -27,25 +25,16 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}">
 
-
-{#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
-{#        See https://symfony.com/doc/current/security/remember_me.html#}
-
-{#        <div class="checkbox mb-3">#}
-{#            <label>#}
-{#                <input type="checkbox" name="_remember_me"> Remember me#}
-{#            </label>#}
-{#        </div>#}
-
-
     <button class="effectButton" type="submit">
         Connexion
     </button>
-    {% if error %}
-        <div class="alert alert-danger">Erreur d'identification</div>
+
+    <h1>Si vous n'avez pas de compte</h1>
+    <a class="titleEffect" href="{{ path('app_register') }}"><span class="date">Cliquez-Ici</span></a>
     {% endif %}
-
-
+        {% if error %}
+            <div class="alert alert-danger">Erreur d'identification</div>
+        {% endif %}
 </form>
 
 

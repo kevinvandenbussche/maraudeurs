@@ -3,19 +3,17 @@
     {% include 'header/header.general.html.twig' %}
 {% endblock %}
 {% block content %}
-    <h1>Les categories</h1>
+    <h1>Les catégories</h1>
     <a class="titleCrud" href="{{ path('insert_category') }}">CREER UNE NOUVELLE CATEGORIE</a>
         <div class="containerElement">
         {% for category in categories %}
             <div class="menuCrud">
-                <a href="{{ path('display_articles', {'id': category.id }) }}"><h2>{{ category.name }}</h2></a>
+                <a class="titleEffect" href="{{ path('display_articles', {'id': category.id }) }}"><h2>{{ category.name }}</h2></a>
                 <div class="linkCrud">
-                    <a href="{{ path('update_category', {'id' : category.id}) }}">modifier la categorie</a>
+                    <a href="{{ path('update_category', {'id' : category.id}) }}"><i class="bi bi-pencil-square"></i></a>
                     {% if is_granted ('ROLE_ADMIN') %}
-                    <div class="border"></div>
-                    <a href="{{ path('delete_category', {'id' : category.id}) }}">supprimer la categorie</a>
+                    <a href="{{ path('delete_category', {'id' : category.id}) }}"><i class="bi bi-x-square"></i></a>
                     {% endif %}
-                    %}
                 </div>
             </div>
         {% endfor %}

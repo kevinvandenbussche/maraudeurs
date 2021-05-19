@@ -22,7 +22,6 @@ class CategoriesArticlesController extends AbstractController
 {   //je creer une route qui me permet d'utiliser ma methode et je lui donne un nom
     /**
      * @Route ("/categories", name="display_categories")
-
      */
     //j'utilise l'auto wire qui me permet d'utiliser le repository creer par doctrine qui contient toutes les requetes
     public function displayCategories(CategoryArticleRepository $categoryArticleRepository)

@@ -37,11 +37,6 @@ footer span{
 
 }
 
-h1 {
-    color: #00E7FF;
-    font-family: "Orbitron", serif;
-}
-
 h2{
     color: #00E7FF;
     font-family: "Orbitron", serif;
@@ -148,8 +143,10 @@ h1 {
     width: 50%;
     margin: 0 auto;
     text-align: center;
-    padding-bottom: 5%;
+    padding-top: 5%;
     display: block;
+    color: #00E7FF;
+    font-family: "Orbitron", serif;
 }
 
 .descriptif {
@@ -360,9 +357,14 @@ footer a {
 
 .taillePhotoDiscord{
     width: 20%;
-    margin: auto;
     text-align: center;
 }
+
+.taillePhotoDiscordFooter{
+    width: 20%;
+    margin-left: 38%;
+}
+
 /*****************************************gestion des formulaires*****************************************************/
 .titleLabel{
     text-align: center;
@@ -371,6 +373,40 @@ footer a {
     font-size: 2em;
     padding-top: 20px;
 }
+
+.titleShow{
+    border-radius: 20px;
+    background-color:  rgba(13, 46, 66, 0.5);
+    width: 45%;
+    margin: 0 auto;
+    border: 1px solid #3994d1;
+    padding: 5px;
+    text-align: center;
+}
+
+.titleEffect{
+    margin-top: 5px;
+    margin-left: 30%;
+    border-radius: 20px;
+    background-color:  rgba(13, 46, 66, 0.5);
+    width: 45%;
+    border: 1px solid #3994d1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.titleEffect:hover {
+    box-shadow: 0 0 10px rgba(13, 46, 66, 0.8) inset, 0 0 10px 4px #3498db;
+    background-color: transparent;
+}
+
+.date{
+    font-size: 1em;
+}
+
 .inputLabel{
     text-align: center;
     /*width: 50%;*/
@@ -426,6 +462,13 @@ button{
 /*****************************************gestion des fichiers dynamiques ********************************************/
 .titleCrud{
     text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.titleCrud:hover{
+    transition: all ease-in-out 0.5s;
+    transform: scale(1.1);
 }
 
 .message{
@@ -461,20 +504,21 @@ button{
 
 .linkCrud{
     display: flex;
-    justify-content: center;
-    margin-left: 5px;
+    justify-content: space-between;
+    width: 15%;
+    margin: 0 auto;
 }
 
 .linkCrudArticle{
     display: flex;
-    justify-content: center;
-    margin-left: 5px;
+    justify-content: space-between;
+    width: 15%;
+    margin: 0 auto;
+    padding-top: 10px;
 }
 
 .linkCrudArticle a{
     font-size: 1em;
-
-
 }
 
 #menu-button{
@@ -579,15 +623,19 @@ h3{
     width: 40%;
     margin: 0 auto;
     font-size: 1.5em;
-    /*margin-left: 42%;*/
+    text-align: center;
 }
 
-@media screen and (min-width:320px) and (max-width:850px){
+@media screen and (min-width:300px) and (max-width:850px){
     /* FAIRE DROP DOWN POUR TELEPHONE */
 
     /* pour faire disparaitre la photo de gauche */
     .none{
         display: none;
+    }
+
+    .headerPrincipal{
+        height:40vh;
     }
 
     /* pour mettre tout le contenu en colonne */
@@ -623,7 +671,6 @@ h3{
         width: 20%;
     }
 
-
     /* pour eviter que le titre soit sur plusieur ligne */
     .mediaTitre{
         width: 90%;
@@ -648,8 +695,6 @@ h3{
         opacity: 1;
 
     }
-
-
     /* pb de selection de mes div avec la classe effet qui me decale le pointeur et qui m empeche de selectionner la bonne section, du coup je l'enleve de toute mes div */
     .effet *{
         display: none;
@@ -671,7 +716,7 @@ h3{
     .relative::after{
         content:"";
         position: absolute;
-        bottom:-10px;
+        bottom:-33px;
         left:50%;
         transform: translateX(-50%);
         width:35px;
@@ -682,7 +727,6 @@ h3{
 
     .containerElement{
         display: block;
-
     }
 
     .menuCrud{
@@ -704,18 +748,19 @@ h3{
         line-height:1.5;
         position:relative;
     }
-
     .header-title{
         line-height:50px;
         font-size:22px;
     }
 
     .burger{
-        margin-top: 80px;
+        margin-top: 61px;
     }
+
     .burger,.liBurger{
         display:block;
     }
+
     .liBurger{
         height:50px;
         line-height:50px;
@@ -739,20 +784,17 @@ h3{
         text-align:center;
         font-size:40px;
         transition:all .5s;
+        margin-top: 7px;
     }
-
 
     #menu-button::after{
         content:'×';
     }
     #menu-button.close{
         color:#fff;
-        background:#000;
+        background:#00e5ff15;
     }
 
-    #menu-button{
-        margin-top: 20px;
-    }
     #menu-button.close::after{
         content:'≡';
     }
@@ -779,6 +821,20 @@ h3{
     }
     #menu-button{
         display: block;
+    }
+
+    .titleEffect{
+        margin-top: 5px;
+        margin-left: 5%;
+        border-radius: 20px;
+        background-color:  rgba(13, 46, 66, 0.5);
+        width: 90%;
+        border: 1px solid #3994d1;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 10px;
     }
 
 }

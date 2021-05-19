@@ -59,12 +59,12 @@ class Article
      * )
      */
     private $title;
-
+    //j'indique à Doctrine que plusieurs Article peuvent être dans Media
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Media", mappedBy="article", cascade="persist")
      */
     private $media;
-
+    //je crée un Array collection pour pouvoir stocker chaque donné
     public function __construct()
     {
         $this->media = new ArrayCollection();

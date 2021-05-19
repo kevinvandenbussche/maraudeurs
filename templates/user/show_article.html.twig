@@ -10,10 +10,9 @@
             <a class="alignLink" href="{{ asset('files/') }}{{ media.url }}" target="_blank">Cliquez ici pour avoir accès à la documentation</a>
         {% endfor %}
         <div class="linkCrudArticle">
-            <a href="{{ path('update_article', {'id' : article.id}) }}">modifier l'article</a>
+            <a href="{{ path('update_article', {'id' : article.id}) }}"><i class="bi bi-pencil-square"></i></a>
             {% if is_granted ('ROLE_ADMIN') %}
-            <div class="border"></div>
-            <a href="{{ path('delete_article', {'id' : article.id}) }}">supprimer l'article</a>
+            <a href="{{ path('delete_article', {'id' : article.id}) }}"><i class="bi bi-x-square"></i></a>
             {% endif %}
     </div>
 {% endblock %}

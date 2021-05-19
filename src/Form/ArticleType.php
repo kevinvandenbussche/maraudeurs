@@ -32,27 +32,26 @@ class ArticleType extends AbstractType
                 //et qui correspond au champ name de mon entité
                 'choice_label'=> 'name'
             ])
-            //j'indique a symfony que mon l'objet qu'il recoit est un tableau
-            ->add('media', CollectionType::class, [
-                //je lui indique se qu'il va recevoir comme type de valeur
-                'entry_type' => MediaType::class,
-
-            ])
-//            ->add('media', MediaType::class)
+            //j'indique à Symfony qu'il va recevoir des fichiers
             ->add('media', FileType::class,[
                 'label' => 'Joindre votre(ou vos) document(s)',
+                //je lui indique qu'il peut recevoir plusieurs fichier
                 'multiple' => true,
+                //je lui dit qu'il ne doit pas s'occuper du deplacement du fichier
                 'mapped' => false,
                 'required' => false,
+                //je lui indique qu'elle type de fichier il doit recevoir
                 'constraints' => [
                     new All([
                         'constraints' => [
                             new File([
                                 'maxSize' => '50M',
-                                'mimeTypesMessage' => 'Veuillez choisir un document au format pdf',
+                                'mimeTypesMessage' => 'Veuillez choisir un document au format pdf ou pptx',
                                 'mimeTypes' => [
                                     'application/pdf',
-                                    'application/x-pdf'
+                                    'application/x-pdf',
+                                    'application/vnd.ms-powerpoint',
+                                    'application/vnd.openxmlformats-officedocument.presentationml.presentation'
                                 ]
                             ]),
                         ],
