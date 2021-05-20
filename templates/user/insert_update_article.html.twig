@@ -17,10 +17,12 @@
         </div>
         {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
         <div class="flex">
-            <div id="media" class="input">
+            <div id="media" class="input choiceFile">
                 {{ form_widget(articles.media) }}
                 {{ form_errors(articles.media) }}
-{#                <button onclick="upload()" class="otherFiles">autre fichier</button>#}
+            </div>
+            <div class="input" id="tagsContainer">
+                <button id="addTag" >Autre Fichier</button>
             </div>
         </div>
 

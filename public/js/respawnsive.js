@@ -12,8 +12,8 @@ descriptifs.forEach((el, i) => {
     });
 })
 
-var menuButton = document.querySelector('#menu-button');
-var menu = document.querySelector('#menu');
+const menuButton = document.querySelector('#menu-button');
+const menu = document.querySelector('#menu');
 
 menuButton.addEventListener('click',function(){
     menu.classList.toggle('show-menu');

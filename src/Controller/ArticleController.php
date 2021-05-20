@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/insert/article", name="insert_article")
      */
-    public function insertArticle(Request $request, EntityManagerInterface $entityManager)
+    public function insertArticle(Request $request, EntityManagerInterface $entityManager, CategoryArticleRepository $categoryArticleRepository)
     {
         //je creer un nouvelle entité que je mets dans une variable
         $article = new Article();
@@ -57,38 +57,53 @@ class ArticleController extends AbstractController
             $article = $form->getData();
             //je recupere la date du jour avec le set date de mon entite
             $article->setDate( new \DateTime());
-            //je recupere mon tableau de media que je mets dans une variable
-            $medias = $form->get('media')->getData();
-            if($medias){
-                //je boucle dessus
-                foreach ($medias as $media){
-                    //je modifie le nom de mon fichier pour pouvoir le stocker en bdd
-                    $newfiles = md5(uniqid()).'.'.$media->guessExtension();
-                    try {
-                        //je deplace mon fichier
-                        $media->move(
-                            //je le mets dans le dossier files qui est dans public
-                            $this->getParameter('media_directory'),
-                            $newfiles
-                        );
-                    //si le code ne s'effectue pas je fais remonter une erreur a l'utilisateur
-                    }catch (FileException $e){
-                        //si le fichier ne se deplace pas je fais remonter un message d'erreur
-                        throw new \Exception("le fichier n\'a pas été enregistré");
+            // je créer un tableau de medias
+            $medias = [];
+            //je verifie si la taille du tableau est superieur à 1
+            if (count($request->files) > 1){
+                //je fais une boucle est j'insert l'index du tableau dans $key et sa valeur dans $value (valeur [0 => "toto"])
+                foreach ($request->files as $key => $value){
+                    //si la key est different d'article
+                    if($key != 'article'){
+                        //dans le tableau media je met la valeur
+                        $medias[] = $value;
                     }
-                    //je creé une nouvelle entité média
-                    $media = new Media();
-                    //je met le nouveau nom du media dans le champs url
-                    $media->setUrl($newfiles)
-                            ->setName($form->get('title')->getData());
-                    //utilisation de la methode add article pour pouvoir stocker les données au bon endroit dans l'entité article
-                    $media->addArticle($article);
-                    //utilisation de la methode add article pour pouvoir stocker les id dans la table intermedaire
-                    $article->addMedia($media);
-                    //je pre-sauvegarde mon entité media
-                    $entityManager->persist($media);
                 }
             }
+            //je recupere mon tableau de media que je mets dans une variable
+            $medias[] =  $form->get('media')->getData();
+            // dd(empty($medias[0]));
+                    //je boucle dessus
+                    foreach ($medias as $media){
+                        //je verifie les index et si la valeur d'un index est vide il continue tout de même la boucle
+                        //si il n'y a plus de contenue je stop et sort de mon if
+                        if (empty($media) == 1){continue;}
+                        //je modifie le nom de mon fichier pour pouvoir le stocker en bdd
+                        $newfiles = md5(uniqid()) . '.' . $media->guessExtension();
+                        try {
+                            //je deplace mon fichier
+                            $media->move(
+                            //je le mets dans le dossier files qui est dans public
+                                $this->getParameter('media_directory'),
+                                $newfiles
+                            );
+                            //si le code ne s'effectue pas je fais remonter une erreur a l'utilisateur
+                        } catch (FileException $e) {
+                            //si le fichier ne se deplace pas je fais remonter un message d'erreur
+                            throw new \Exception("le fichier n\'a pas été enregistré");
+                        }
+                        //je creé une nouvelle entité média
+                        $media = new Media();
+                        //je met le nouveau nom du media dans le champs url
+                        $media->setUrl($newfiles)
+                            ->setName($form->get('title')->getData());
+                        //utilisation de la methode add article pour pouvoir stocker les données au bon endroit dans l'entité article
+                        $media->addArticle($article);
+                        //utilisation de la methode add article pour pouvoir stocker les id dans la table intermedaire
+                        $article->addMedia($media);
+                        //je pre-sauvegarde mon entité media
+                        $entityManager->persist($media);
+                    }
             //je mets l'entité manager pour pre-sauvegarder mon entité Article
             $entityManager->persist($article);
             //j'envoi en base de donnée
@@ -174,6 +189,7 @@ class ArticleController extends AbstractController
 
 
     }
+
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route ("/delete/article/{id}", name="delete_article")

@@ -76,14 +76,14 @@ class CategoriesArticlesController extends AbstractController
      * @Route ("/update/category/{id}", name="update_category")
      */
     //j'utilise l'autowire pour instanicer ma méthode
-    public function updateCategory($id, CategoryArticleRepository $categoryArticleRepository, Request $request, EntityManagerInterface $entityManager)
+    public function updateCategory(CategoryArticle $categoryArticle, Request $request, EntityManagerInterface $entityManager)
     {
         //j'utilise doctrine pour faire une requete select avec en paramatre l'id qui est dans l'url que je mets dans un variable
-        $category= $categoryArticleRepository->find($id);
+        //$category= $categoryArticleRepository->find($id);
 
         $title = 'Modification';
 
-        $form= $this->createForm(CategoryType::class, $category);
+        $form= $this->createForm(CategoryType::class, $categoryArticle);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

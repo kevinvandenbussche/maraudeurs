@@ -23,8 +23,8 @@ class ArticleType extends AbstractType
     {
         //add correspond au ligne de mon formulaire qui eu meme corresponde au champ de mon entité
         $builder
-            ->add('articleContent')
             ->add('title')
+            ->add('articleContent')
             //je precise a symfony que ce champ est une entité
             ->add('categoryArticle', EntityType::class,[
                 //je lui indique que c'est l'entité categoryArticle
@@ -35,15 +35,14 @@ class ArticleType extends AbstractType
             //j'indique à Symfony qu'il va recevoir des fichiers
             ->add('media', FileType::class,[
                 'label' => 'Joindre votre(ou vos) document(s)',
+                'data_class' => Media::class,
                 //je lui indique qu'il peut recevoir plusieurs fichier
-                'multiple' => true,
+//                'multiple' => true,
                 //je lui dit qu'il ne doit pas s'occuper du deplacement du fichier
                 'mapped' => false,
                 'required' => false,
                 //je lui indique qu'elle type de fichier il doit recevoir
                 'constraints' => [
-                    new All([
-                        'constraints' => [
                             new File([
                                 'maxSize' => '50M',
                                 'mimeTypesMessage' => 'Veuillez choisir un document au format pdf ou pptx',
@@ -55,9 +54,7 @@ class ArticleType extends AbstractType
                                 ]
                             ]),
                         ],
-                    ]),
-                ]
-            ])
+                ])
 
         ;
     }

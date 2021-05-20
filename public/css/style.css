@@ -538,6 +538,20 @@ h3{
     font-size: 10em;
 }
 
+.white{
+    color: white;
+}
+
+#addTag{
+    padding: 2px;
+    margin: 0 auto;
+    font-family: "Electrolize", sans-serif;
+}
+
+.choiceFile{
+    width: 100%;
+}
+
 /************************************BOUTON****************************************/
 .effectButton{
     margin-top: 10px;

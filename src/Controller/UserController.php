@@ -62,7 +62,7 @@ class UserController extends AbstractController
         $entityManager->flush();
         $this->addFlash(
             'success',
-            'l\'utilisateur a été bien supprimé'
+            'l\'utilisateur a été bien supprimé '
         );
         //je renvoi l'utilisateur vers la page des categories
         return $this->redirectToRoute('role');
