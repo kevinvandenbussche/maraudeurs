@@ -110,17 +110,25 @@ class CategoriesArticlesController extends AbstractController
     {
 
         $category= $categoryArticleRepository->find($id);
-        //j'utilise la methode remove de doctrine qui me permet de faire la requete qui supprime la donnée
-        $entityManager->remove($category);
-        //j'envoie ne base de donnée
-        $entityManager->flush();
-        $this->addFlash(
-            'success',
-            'la categorie a été supprimé'
-        );
+        $dataArticle = $category->getArticle()->isempty();
+//        dd($dataArticle);
+        if($dataArticle == true){
+            //j'utilise la methode remove de doctrine qui me permet de faire la requete qui supprime la donnée
+            $entityManager->remove($category);
+            //j'envoie ne base de donnée
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'la categorie a été supprimé'
+            );
+        }else{
+            $this->addFlash(
+                'success',
+                'Pour supprimer une catégorie veuillez supprimer les articles au préalable'
+            );
+        }
         //je renvoi l'utilisateur vers la page des categories
         return $this->redirectToRoute('display_categories');
-
     }
 
 

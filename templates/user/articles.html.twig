@@ -15,9 +15,11 @@
                 <div class="linkCrud">
                     <a href="{{ path('update_article', {'id' : article.id}) }}"><i class="bi bi-pencil-square"></i></a>
                     {% if is_granted ('ROLE_ADMIN') %}
-                     <a class="delete"  onClick="del({{ article.id }})"  href="{{ path('delete_article', {'id' : article.id}) }}"><i class="bi bi-x-square"></i></a>
-                    {% endif %}
+                     <p class="logoLink"><i class="bi bi-x-square delete"></i></p>
+
                 </div>
+                <a class="confirmDelete"  href="{{ path('delete_article', {'id' : article.id}) }}"><span class="messageDelete">Confirmer la supression</span></a>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

@@ -25,7 +25,11 @@
                         <option value="user">utilisateur</option>
                     </select>
                     <input class="inputRole" type="submit">
-                    <a class="linkDeleteUser delete" href="{{ path('delete_user', {'id' : user.id}) }}">supprimer l'utilsateur</a>
+                    <div class="linkCrud">
+                    <p class="logoLink"><i class="bi bi-x-square delete"></i></p>
+                    </div>
+                    <a class="confirmDelete" href="{{ path('delete_user', {'id' : user.id}) }}"><span class="messageDelete">Confirmer la supression</span></a>
+
                 </form>
             </div>
         {% endfor %}

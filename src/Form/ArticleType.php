@@ -50,7 +50,8 @@ class ArticleType extends AbstractType
                                     'application/pdf',
                                     'application/x-pdf',
                                     'application/vnd.ms-powerpoint',
-                                    'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+                                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                                 ]
                             ]),
                         ],

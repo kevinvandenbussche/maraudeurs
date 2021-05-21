@@ -625,9 +625,7 @@ h3{
     text-align: center;
 }
 
-/*select{*/
-/*    margin-left: 20%;*/
-/*}*/
+
 
 .inputRole{
     margin-left: 20%;
@@ -639,6 +637,25 @@ h3{
     font-size: 1.5em;
     text-align: center;
 }
+
+.logoLink{
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.confirmDelete.confirm{
+    display: block;
+}
+
+.confirmDelete{
+    display: none;
+
+}
+ .messageDelete{
+     width: 50%;
+     margin-left: 28%;
+ }
 
 @media screen and (min-width:300px) and (max-width:850px){
     /* FAIRE DROP DOWN POUR TELEPHONE */
