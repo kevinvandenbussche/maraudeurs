@@ -5,9 +5,9 @@
 {% block content %}
     <h1>{{ category.name }}</h1>
     <a class="titleCrud" href="{{ path  ('insert_article') }}">CREER UN NOUVEL ARTICLE</a>
-    <div class="containerElement">
+    <article class="containerElement">
         {% for article in articles %}
-            <div class="menuCrud">
+            <section class="menuCrud">
                 <a class="titleEffect" href="{{ path ('show_article' , {'id':article.id}) }}">
                     <h2>{{ article.title }}</h2>
                 </a>
@@ -16,11 +16,10 @@
                     <a href="{{ path('update_article', {'id' : article.id}) }}"><i class="bi bi-pencil-square"></i></a>
                     {% if is_granted ('ROLE_ADMIN') %}
                      <p class="logoLink"><i class="bi bi-x-square delete"></i></p>
-
                 </div>
                 <a class="confirmDelete"  href="{{ path('delete_article', {'id' : article.id}) }}"><span class="messageDelete">Confirmer la supression</span></a>
                 {% endif %}
-            </div>
+            </section>
         {% endfor %}
-    </div>
+    </article>
 {% endblock %}

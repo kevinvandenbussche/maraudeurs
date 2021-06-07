@@ -1,34 +1,38 @@
-{% extends 'lore.html.twig' %}
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'header/header.general.html.twig' %}
+{% endblock %}
 {% block content %}
 
-    {{ form_start(articles)  }}
-        {{ form_label(articles.title, 'Titre de l\'Article', {'label_attr': {'class': 'titleLabel'}}) }}
-        <div class="input">
-            {{ form_widget(articles.title, {'attr': {'class': 'inputLabel'}}) }}
-            {{ form_errors(articles.title) }}
-        </div>
-        {{ form_label(articles.articleContent, 'Decription', {'label_attr': {'class': 'titleLabel'}}) }}
-        <div class="input">
-            {{ form_widget(articles.articleContent) }}
-        </div>
-        {{ form_label(articles.categoryArticle, 'Categorie', {'label_attr': {'class': 'titleLabel marginZero '}}) }}
-        <div class="input">
-            {{ form_widget(articles.categoryArticle) }}
-        </div>
-        {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
-        <div class="flex">
-            <div id="media" class="input choiceFile">
-                {{ form_widget(articles.media) }}
-                {{ form_errors(articles.media) }}
+    <article>
+        {{ form_start(articles)  }}
+            {{ form_label(articles.title, 'Titre de l\'Article', {'label_attr': {'class': 'titleLabel'}}) }}
+            <div class="input">
+                {{ form_widget(articles.title, {'attr': {'class': 'inputLabel'}}) }}
+                {{ form_errors(articles.title) }}
             </div>
-            <div class="input" id="tagsContainer">
-                <button id="addTag" >Autre Fichier</button>
+            {{ form_label(articles.articleContent, 'Decription', {'label_attr': {'class': 'titleLabel'}}) }}
+            <div class="input">
+                {{ form_widget(articles.articleContent) }}
             </div>
-        </div>
+            {{ form_label(articles.categoryArticle, 'Categorie', {'label_attr': {'class': 'titleLabel marginZero '}}) }}
+            <div class="input">
+                {{ form_widget(articles.categoryArticle) }}
+            </div>
+            {{ form_label(articles.media, 'Media', {'label_attr': {'class': 'titleLabel'}}) }}
+            <div class="flex">
+                <div class="input choiceFile">
+                    {{ form_widget(articles.media) }}
+                    {{ form_errors(articles.media) }}
+                </div>
+                <div class="input" id="tagsContainer">
+                    <button id="addTag" >Autre Fichier</button>
+                </div>
+            </div>
 
-        <button type="submit" class="effectButtonSend">Envoyer</button>
-    {{ form_end(articles) }}
-
+            <button type="submit" class="effectButtonSend">Envoyer</button>
+        {{ form_end(articles) }}
+    </article>
 
 
 {% endblock %}

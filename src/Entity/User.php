@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface
 {
     /**
-     * @ORM\OneToMany (targetEntity="App\Entity\Media", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", inversedBy="user")
      */
     private $media;
 
@@ -53,13 +53,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\Length (
-     *     min="4",
-     *     minMessage="Vote mot de pase doit contenir au moins 4 caractère",
-     *      max="20",
-     *      maxMessage=" votre mot de passe doit faire plus de 20 caractères"
-     * )
-     *
+
      */
     private $password;
 
@@ -68,10 +62,6 @@ class User implements UserInterface
      */
     private $pseudonyme;
 
-    public function __construct()
-    {
-        $this->media= new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -151,24 +141,6 @@ class User implements UserInterface
         $this->article = $article;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getMedia(): ArrayCollection
-    {
-        return $this->media;
-    }
-
-    /**
-     * @param ArrayCollection $media
-     */
-    public function setMedia(ArrayCollection $media): void
-    {
-        $this->media = $media;
-    }
-
-
-
 
     /**
      * Returning a salt is only needed, if you are not using a modern
@@ -201,4 +173,22 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param mixed $media
+     */
+    public function setMedia($media): void
+    {
+        $this->media = $media;
+    }
+
+
 }

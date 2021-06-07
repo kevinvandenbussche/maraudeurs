@@ -14,7 +14,7 @@ class Article
 {
 
     //je dis a doctrine quelle est la table a relié avec article et le ManyToOne indique les cardinalités
-    //plusieurs article peuvent etre dans category
+    //plusieurs Article peuvent etre dans Category
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CategoryArticle", inversedBy="article")
      */
@@ -25,8 +25,6 @@ class Article
      * @ORM\JoinColumn(nullable=true)
      */
     private $user;
-
-    //j'indique a doctrine que les articles peuvent avoir plusieurs media
 
     /**
      *
@@ -54,12 +52,12 @@ class Article
      * @Assert\Length(
      *     min=5,
      *     minMessage="Votre titre est trop court",
-     *     max=100,
+     *     max=50,
      *     maxMessage="Votre titre est un peu trop long, essayez de le simplifier"
      * )
      */
     private $title;
-    //j'indique à Doctrine que plusieurs Article peuvent être dans Media
+    //j'indique à Doctrine que plusieurs Article peuvent être dans Media, cascade me permet d'affecter les données des entités enfant
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Media", mappedBy="article", cascade="persist")
      */

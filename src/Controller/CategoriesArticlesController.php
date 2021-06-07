@@ -64,7 +64,7 @@ class CategoriesArticlesController extends AbstractController
                 'la categorie a été creé'
             );
             //je renvoi l'utilisateur sur la page de formulaire de création
-            return $this->redirectToRoute('insert_category');
+            return $this->redirectToRoute('display_categories');
         }
         //j'envoi l'utilisateur sur une page avec le formulaire de creation
         return $this->render('user/insert_update_category_articles.html.twig', [
@@ -94,12 +94,14 @@ class CategoriesArticlesController extends AbstractController
                 'success',
                 'la categorie a été modifiée'
             );
-
+            //je renvoi l'utilisateur sur la page de formulaire de création
+            return $this->redirectToRoute('display_categories');
         }
+        //j'envoi l'utilisateur sur une page avec le formulaire de creation
         return $this->render('user/insert_update_category_articles.html.twig', [
-            'categories' => $form->createView(),
-            'title' => $title
+            'categories' => $form->createView()
         ]);
+
     }
     //je creer une route avec une wild card
     /**

@@ -5,10 +5,10 @@
 {% block content %}
     <h1 class="titleA">Nos Membres</h1>
     {% set role = "" %}
-    <div class="containerElement">
+    <article class="containerElement">
         {% for user in users %}
-            <div class="menuCrud">
-                <h1 class="nameUser">{{ user.pseudonyme }}</h1>
+            <section class="menuCrud">
+                <h2 class="nameUser">{{ user.pseudonyme }}</h2>
                 {% if "ROLE_ADMIN" in user.roles %}
                 {% set role = "Administrateur" %}
                 {% elseif "ROLE_USER" in user.roles %}
@@ -29,9 +29,8 @@
                     <p class="logoLink"><i class="bi bi-x-square delete"></i></p>
                     </div>
                     <a class="confirmDelete" href="{{ path('delete_user', {'id' : user.id}) }}"><span class="messageDelete">Confirmer la supression</span></a>
-
                 </form>
-            </div>
+            </section>
         {% endfor %}
-    </div>
+    </article>
 {% endblock%}

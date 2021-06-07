@@ -13,12 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Media
 {
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="media")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="media")
      */
     private $user;
 
-    //j'indique a doctrine que plusieurs media peuvent etre dans article
+    //j'indique à doctrine que plusieurs Media peuvent être dans Article
     /**
      * @ORM\ManyToMany (targetEntity="App\Entity\Article", inversedBy="media")
      */
@@ -87,10 +86,11 @@ class Media
     /**
      * @param mixed $user
      */
-    public function setUser($user): void
+    public function setUser($user)
     {
         $this->user = $user;
     }
+
 
     /**
      * @return ArrayCollection

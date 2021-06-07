@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+    <article>
         <h1>{{ article.title }}</h1>
         <p class="content">{{ article.articleContent }}</p>
         {% for media in article.media %}
@@ -12,7 +13,10 @@
         <div class="linkCrudArticle">
             <a href="{{ path('update_article', {'id' : article.id}) }}"><i class="bi bi-pencil-square"></i></a>
             {% if is_granted ('ROLE_ADMIN') %}
-            <a class="delete" href="{{ path('delete_article', {'id' : article.id}) }}"><i class="bi bi-x-square"></i></a>
-            {% endif %}
-    </div>
+            <p class="logoLink"><i class="bi bi-x-square delete"></i></p>
+        </div>
+            <a class="confirmDelete"  href="{{ path('delete_article', {'id' : article.id}) }}"><span class="messageDelete">Confirmer la supression</span></a>
+            w{% endif %}
+        </div>
+    </article>
 {% endblock %}

@@ -5,9 +5,9 @@
 {% block content %}
     <h1>Les catégories</h1>
     <a class="titleCrud" href="{{ path('insert_category') }}">CREER UNE NOUVELLE CATEGORIE</a>
-        <div class="containerElement">
+        <article class="containerElement">
         {% for category in categories %}
-            <div class="menuCrud">
+            <section class="menuCrud">
                 <a class="titleEffect" href="{{ path('display_articles', {'id': category.id }) }}"><h2>{{ category.name }}</h2></a>
                 <div class="linkCrud">
                     <a href="{{ path('update_category', {'id' : category.id}) }}"><i class="bi bi-pencil-square"></i></a>
@@ -16,7 +16,7 @@
                 </div>
                 <a class="confirmDelete" href="{{ path('delete_category', {'id' : category.id}) }}"><span class="messageDelete">Confirmer la supression</span></a>
                 {% endif %}
-            </div>
+            </section>
         {% endfor %}
-        </div>
+        </article>
 {% endblock %}

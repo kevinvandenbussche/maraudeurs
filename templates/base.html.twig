@@ -19,7 +19,7 @@
 {% endblock %}
 <!-- la nav est sortie de la structure HTML classique pour pouvoir etre sticky au body directement-->
 <nav class="wrapperHeader">
-    <div class="page">
+    <section class="page">
         <div id="boiteTransparente">
             <div id="bandeauMenu">
                 <ul class="dekstop">
@@ -43,13 +43,13 @@
                 <li class="liBurger"><a href="https://robertsspaceindustries.com/" target="_blank">SITE RSI</a></li>
             </ul>
         </nav>
-    </div>
+    </section>
 </nav>
 
 {% for message in app.flashes('success') %}
-<div class="message">
+<article class="message">
     <p>{{ message }}</p>
-</div>
+</article>
 {% endfor %}
 {% block content %}
 

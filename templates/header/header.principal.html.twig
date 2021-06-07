@@ -1,6 +1,6 @@
 
 <header class="headerPrincipal">
-    <div class="colorBlack">
+    <section class="colorBlack">
         <ul class="listHeader">
             <li class="start">
                 <a class="linkDiscord" href="https://discord.gg/xCZjaKjSZt" target="_blank">
@@ -12,13 +12,24 @@
                 <li><a href="{{ path('role') }}">Gestion Des Utilisateurs</a></li>
             {% endif %}
             {% if app.user %}
-                <li><a href="{{ path('app_login') }}">{{ app.user.pseudonyme }}</a></li>
+                <li>
+                    <a class="flex" id="pictureProfile"  href="{{ path('app_login') }}">
+{#                        <div class="radius">#}
+{#                            {% if  app.user.media is empty %}#}
+{#                            <img src="{{ asset('img/logoMaraudeursPrinciapal.png') }}" alt="">#}
+{#                            {% else %}#}
+{#                            <img class="resp" src="{{ asset('files/') }}{{ app.user.media.url }}" alt="{{ app.user.pseudonyme }}">#}
+{#                            {% endif %}#}
+{#                        </div>#}
+                        {{ app.user.pseudonyme }}
+                    </a>
+                </li>
             {% else %}
                 <li><a href="{{ path('app_login') }}" ><i class="bi bi-person-circle"></i>Connexion</a></li>
             {% endif %}
         </ul>
-    </div>
-    <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    </section>
+    <section id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="d-flex justify-content-center">
@@ -41,6 +52,7 @@
                 </div>
             </div>
         </div>
+    </section>
 </header>
 
 

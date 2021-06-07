@@ -8,34 +8,39 @@
 
 {% block content %}
     {% if is_granted('ROLE_USER') %}
-        <div class="unlog">
-            <span>Vous êtes connécté en tant que {{ app.user.pseudonyme }}</span> <a href="{{ path('app_logout') }}">Deconnexion</a>
-        </div>
+        <article class="unlog">
+            <span>Vous êtes connécté en tant que {{ app.user.pseudonyme }}</span>
+            <a href="{{ path('user_update', {'id' : app.user.id}) }}">Mettre Votre Profil à Jour</a>
+            <a href="{{ path('app_logout') }}">Deconnexion</a>
+        </article>
+
     {% else %}
-<form method="post">
-    <h1>Pour Vous Connecter</h1>
-    <h2><label for="inputEmail">Email</label></h2>
-    <div class="input">
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail"  required autofocus>
-    </div>
-    <h2><label for="inputPassword">Mot de passe</label></h2>
-    <div class="input">
-    <input type="password" name="password" id="inputPassword"  required>
-    </div>
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}">
+        <article>
+            <form method="post">
+                <h1>Pour Vous Connecter</h1>
+                <h2><label for="inputEmail">Email</label></h2>
+                <div class="input">
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail"  required autofocus>
+                </div>
+                <h2><label for="inputPassword">Mot de passe</label></h2>
+                <div class="input">
+                <input type="password" name="password" id="inputPassword"  required>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}">
 
-    <button class="effectButton" type="submit">
-        Connexion
-    </button>
-
-    <h1>Si vous n'avez pas de compte</h1>
-    <a class="titleEffect" href="{{ path('app_register') }}"><span class="date">Cliquez-Ici</span></a>
-    {% endif %}
-        {% if error %}
-            <div class="alert alert-danger">Erreur d'identification</div>
-        {% endif %}
-</form>
+                <button class="effectButton" type="submit">
+                    Connexion
+                </button>
+                <a href="{{ path('app_forgot_password_request') }}">Mot De Passe oublié</a>
+            </form>
+                <span>Si vous n'avez pas de compte</span>
+                <a class="titleEffect" href="{{ path('app_register') }}"><span class="date">Cliquez-Ici</span></a>
+                {% endif %}
+                    {% if error %}
+                        <div class="alert alert-danger">Erreur d'identification</div>
+                    {% endif %}
+        </article>
 
 
 {% endblock %}

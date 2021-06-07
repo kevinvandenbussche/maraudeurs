@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'header/header.general.html.twig' %}
+{% endblock %}
+{% block content %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <article>
+        <h1>Mettre à jour votre Profil</h1>
+        <section>
+            {{ form_start(UserUpdateForm) }}
+            {{  form_label(UserUpdateForm.pseudonyme, 'Votre Pseudonyme', {'label_attr': {'class': 'titleLabel'}}) }}
+            <div class="input">
+                {{ form_widget(UserUpdateForm.pseudonyme) }}
+            </div>
+            {{ form_label(UserUpdateForm.email, 'Votre Email', {'label_attr': {'class': 'titleLabel'}}) }}
+            <div class="input">
+                {{ form_widget(UserUpdateForm.email) }}
+                {{ form_errors(UserUpdateForm.email)}}
+            </div>
+            <div class="input">
+                {{ form_label(UserUpdateForm.media) }}
+                {{ form_widget(UserUpdateForm.media) }}
+            </div>
+            <button type="submit" class="effectButton">Enregistrer</button>
+            {{ form_end(UserUpdateForm) }}
+        </section>
+    </article>
+
+{% endblock %}

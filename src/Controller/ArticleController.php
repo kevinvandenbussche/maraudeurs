@@ -44,12 +44,12 @@ class ArticleController extends AbstractController
      */
     public function insertArticle(Request $request, EntityManagerInterface $entityManager, CategoryArticleRepository $categoryArticleRepository)
     {
-        //je creer un nouvelle entité que je mets dans une variable
+        //je créé une nouvelle entité que je mets dans une variable
         $article = new Article();
-        //j'utilise une methode d'AbstractController qui me permet de créer un formulaire avec les champs de mon
-        //entité Article que je mets dans un variable
+        //j'utilise une méthode d'AbstractController qui me permet de créer un formulaire avec les champs de mon
+        //entité Article que je mets dans une variable
         $form = $this->createForm(ArticleType::class, $article);
-        //une methode qui me permet de gerer les données du formulaire en POST
+        //une méthode qui me permet de gérer les données du formulaire en POST
         $form->handleRequest($request);
         //je verifie que les champs de mon formulaire sont bien remplie et valide
         if ($form->isSubmitted() && $form->isValid()) {
@@ -87,7 +87,7 @@ class ArticleController extends AbstractController
                                 $this->getParameter('media_directory'),
                                 $newfiles
                             );
-                            //si le code ne s'effectue pas je fais remonter une erreur a l'utilisateur
+                        //si le code ne s'effectue pas je fais remonter une erreur a l'utilisateur
                         } catch (FileException $e) {
                             //si le fichier ne se deplace pas je fais remonter un message d'erreur
                             throw new \Exception("le fichier n\'a pas été enregistré");
@@ -113,8 +113,8 @@ class ArticleController extends AbstractController
                 'success',
                 'l\' article a été creé'
             );
-            //je renvoi l'utilisateur sur le formulaire de modfication et j'indique l'id pour pouvoir indiquer a symfony
-            //quelle article il doit afficher
+            //je renvoi l'utilisateur sur le formulaire de modfication et j'indique l'id pour pouvoir indiquer 0 symfony
+            //quel article il doit afficher
             return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
         }
         //j'envoi l'utilisateur sur le formualire de création d'article
@@ -159,7 +159,7 @@ class ArticleController extends AbstractController
                 foreach ($medias as $media) {
                     //je verifie les index et si la valeur d'un index est vide il continue tout de même la boucle
                     //si il n'y a plus de contenue je stop et sort de mon if
-                    if (empty($media)) {
+                    if (empty($media) == 1) {
                         continue;
                     }
                     //je modifie le nom de mon fichier pour pouvoir le stocker en bdd
