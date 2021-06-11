@@ -10,7 +10,7 @@
     {% if is_granted('ROLE_USER') %}
         <article class="unlog">
             <span>Vous êtes connécté en tant que {{ app.user.pseudonyme }}</span>
-            <a href="{{ path('user_update', {'id' : app.user.id}) }}">Mettre Votre Profil à Jour</a>
+
             <a href="{{ path('app_logout') }}">Deconnexion</a>
         </article>
 
