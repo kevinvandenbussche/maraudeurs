@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'header/header.general.html.twig' %}
+{% endblock %}
+{% block content %}
+    <div class="containerElement">
+    {% for ship in ships %}
+        <h2 class = 'menuCrud'>{{ ship.name }}</h2>
+    {% endfor %}
+    </div>
+
+
+
+{% endblock %}

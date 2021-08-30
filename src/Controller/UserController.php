@@ -18,7 +18,6 @@ class UserController extends AbstractController
 {
     /**
      * @Route("admin/user", name="role")
-     * @IsGranted ("ROLE_ADMIN")
      */
     public function roleUser(UserRepository $repository)
     {
@@ -32,7 +31,7 @@ class UserController extends AbstractController
 
     /**
     * @Route("admin/user/role/update", name = "roleUpdate")
-     * @IsGranted ("ROLE_ADMIN")
+     * @IsGranted("ROLE_ADMIN")
     */
     public function roleUpdate(UserRepository $repository, Request $request, EntityManagerInterface $entityManager)
     {
@@ -45,7 +44,7 @@ class UserController extends AbstractController
             $role = array('ROLE_USER');
         } elseif ($request->request->get('role') === "admin") {
             $role = array('ROLE_ADMIN');}
-
+        $user->setRoles($role);
         $entityManager->persist($user);
         $entityManager->flush();
 
