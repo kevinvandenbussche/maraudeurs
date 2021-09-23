@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'header/header.general.html.twig' %}
+{% endblock %}
+{% block content %}
+    <article>
+        <h1>Notre Foltte</h1>
+        {% for numberShip in numberShips %}
+            <span>{{ numberShips[loop.index] }}{{ numberShip }}</span>
+        {% endfor %}
+
+    </article>
+{% endblock %}

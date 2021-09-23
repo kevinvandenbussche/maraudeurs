@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+{% include 'header/header.general.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>Mes vaisseaux</h1>
+        {% for ship in user.ships %}
+            <span>{{ ship.name }}</span>
+        {% endfor %}
+    </article>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'header/header.general.html.twig' %}
+{% endblock %}
+{% block content %}
+    <div class="containerElement">
+    {% for ship in ships %}
+        <div>
+            <h2>{{ ship.name }}</h2>
+            <span class="id" data-id="{{ ship.id }}">{{ ship.id }}</span>
+        </div>
+    {% endfor %}
+    </div>
+
+
+
+{% endblock %}

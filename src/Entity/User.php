@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -27,6 +28,7 @@ class User implements UserInterface
     private $article;
 
     /**
+     * @Groups("user")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -64,6 +66,7 @@ class User implements UserInterface
     private $pseudonyme;
 
     /**
+     * @Groups("user")
      * @ORM\ManyToMany(targetEntity=Ship::class, mappedBy="user")
      */
     private $ships;
